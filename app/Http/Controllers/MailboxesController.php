@@ -50,7 +50,7 @@ class MailboxesController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', 'App\Mailbox');
+        $this->authorize('create', \App\Mailbox::class);
 
         $users = User::nonDeleted()->where('role', '!=', User::ROLE_ADMIN)->get();
 
@@ -66,7 +66,7 @@ class MailboxesController extends Controller
     {
         $invalid = false;
 
-        $this->authorize('create', 'App\Mailbox');
+        $this->authorize('create', \App\Mailbox::class);
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:128|unique:mailboxes',

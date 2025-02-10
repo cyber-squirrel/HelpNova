@@ -255,7 +255,7 @@ class Conversation extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     /**
@@ -263,7 +263,7 @@ class Conversation extends Model
      */
     public function folder()
     {
-        return $this->belongsTo('App\Folder');
+        return $this->belongsTo(\App\Folder::class);
     }
 
     /**
@@ -271,7 +271,7 @@ class Conversation extends Model
      */
     public function folders()
     {
-        return $this->belongsToMany('App\Folder');
+        return $this->belongsToMany(\App\Folder::class);
     }
 
     /**
@@ -279,7 +279,7 @@ class Conversation extends Model
      */
     public function mailbox()
     {
-        return $this->belongsTo('App\Mailbox');
+        return $this->belongsTo(\App\Mailbox::class);
     }
 
     /**
@@ -296,7 +296,7 @@ class Conversation extends Model
      */
     public function customer()
     {
-        return $this->belongsTo('App\Customer');
+        return $this->belongsTo(\App\Customer::class);
     }
 
     /**
@@ -312,7 +312,7 @@ class Conversation extends Model
      */
     public function threads()
     {
-        return $this->hasMany('App\Thread');
+        return $this->hasMany(\App\Thread::class);
     }
 
     /**
@@ -320,7 +320,7 @@ class Conversation extends Model
      */
     public function extraFolders()
     {
-        return $this->belongsTo('App\Customer');
+        return $this->belongsTo(\App\Customer::class);
     }
 
     /**
@@ -328,7 +328,7 @@ class Conversation extends Model
      */
     public function created_by_user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     /**
@@ -336,7 +336,7 @@ class Conversation extends Model
      */
     public function created_by_customer()
     {
-        return $this->belongsTo('App\Customer');
+        return $this->belongsTo(\App\Customer::class);
     }
 
     /**
@@ -344,7 +344,7 @@ class Conversation extends Model
      */
     public function closed_by_user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     /**
@@ -352,7 +352,7 @@ class Conversation extends Model
      */
     public function followers()
     {
-        return $this->hasMany('App\Follower');
+        return $this->hasMany(\App\Follower::class);
     }
 
     /**
