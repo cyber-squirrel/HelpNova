@@ -27,10 +27,10 @@ class CheckRole
         }
         abort(403, __('You are not authorized to access this resource.'));
         // return response([
-        // 	'error' => [
-        // 		'code' => 'INSUFFICIENT_ROLE',
-        // 		'description' =>
-        // 	]
+        //  'error' => [
+        //      'code' => 'INSUFFICIENT_ROLE',
+        //      'description' =>
+        //  ]
         // ], 401);
     }
 

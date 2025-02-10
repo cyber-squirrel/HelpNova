@@ -198,7 +198,7 @@ class SettingsController extends Controller
                 $settings = [
                     'company_name'         => Option::get('company_name', \Config::get('app.name')),
                     'next_ticket'          => (Option::get('next_ticket') >= Conversation::max('number') + 1) ? Option::get('next_ticket') : Conversation::max('number') + 1,
-                    'custom_number'        => (int)config('app.custom_number'),
+                    'custom_number'        => (int) config('app.custom_number'),
                     'user_permissions'     => User::getGlobalUserPermissions(),
                     'email_branding'       => Option::get('email_branding'),
                     'open_tracking'        => Option::get('open_tracking'),
@@ -385,7 +385,6 @@ class SettingsController extends Controller
         $user = auth()->user();
 
         switch ($request->action) {
-
             // Test sending emails from mailbox
             case 'send_test':
 
@@ -395,7 +394,7 @@ class SettingsController extends Controller
 
                 if (!$response['msg']) {
                     $test_result = [
-                        'status' => 'error'
+                        'status' => 'error',
                     ];
 
                     try {

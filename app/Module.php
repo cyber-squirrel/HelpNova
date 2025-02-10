@@ -239,9 +239,9 @@ class Module extends Model
     public static function formatModuleData($module_data)
     {
         // Add (Third-Party).
-        if (\App\Module::isOfficial($module_data['authorUrl']) 
+        if (\App\Module::isOfficial($module_data['authorUrl'])
             && $module_data['author'] != 'FreeScout'
-            && mb_substr(trim($module_data['name']), -1)  != ']'
+            && mb_substr(trim($module_data['name']), -1) != ']'
         ) {
             $module_data['name'] = $module_data['name'].' ['.__('Third-Party').']';
         }
@@ -250,7 +250,7 @@ class Module extends Model
 
     public static function isThirdParty($module_data)
     {
-        if (\App\Module::isOfficial($module_data['authorUrl']) 
+        if (\App\Module::isOfficial($module_data['authorUrl'])
             && $module_data['author'] != 'FreeScout'
         ) {
             return true;
@@ -293,7 +293,7 @@ class Module extends Model
                             @unlink($from);
                         }
                         $create = true;
-                    } 
+                    }
                 } catch (\Exception $e) {
                     $create = true;
                 }

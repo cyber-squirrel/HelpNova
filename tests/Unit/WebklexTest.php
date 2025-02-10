@@ -16,7 +16,8 @@ use Webklex\PHPIMAP\Exceptions\ResponseException;
 use Webklex\PHPIMAP\Exceptions\RuntimeException;
 use Webklex\PHPIMAP\Message;
 
-class WebklexTest extends FixtureWebklexMessage {
+class WebklexTest extends FixtureWebklexMessage
+{
 
     /**
      * @throws RuntimeException
@@ -30,10 +31,11 @@ class WebklexTest extends FixtureWebklexMessage {
      * @throws AuthFailedException
      * @throws MaskNotFoundException
      */
-    public function testMessage1() {
+    public function testMessage1()
+    {
         $message = $this->getFixture("message-1.eml");
 
-        self::assertSame("☆第132号　「ガーデン&エクステリア」専門店のためのＱ&Ａサロン　【月刊エクステリア・ワーク】", (string)$message->subject);
+        self::assertSame("☆第132号　「ガーデン&エクステリア」専門店のためのＱ&Ａサロン　【月刊エクステリア・ワーク】", (string) $message->subject);
 
         $attachments = $message->getAttachments();
 
@@ -61,10 +63,11 @@ class WebklexTest extends FixtureWebklexMessage {
      * @throws AuthFailedException
      * @throws MaskNotFoundException
      */
-    public function testMessage1B() {
+    public function testMessage1B()
+    {
         $message = $this->getFixture("message-1b.eml");
 
-        self::assertSame("386 - 400021804 - 19., Heiligenstädter Straße 80 - 0819306 - Anfrage Vergabevorschlag", (string)$message->subject);
+        self::assertSame("386 - 400021804 - 19., Heiligenstädter Straße 80 - 0819306 - Anfrage Vergabevorschlag", (string) $message->subject);
 
         $attachments = $message->getAttachments();
 
@@ -88,14 +91,17 @@ class WebklexTest extends FixtureWebklexMessage {
      * @throws \ReflectionException
      * @throws MaskNotFoundException
      */
-    public function testMessage1Symbols() {
+    public function testMessage1Symbols()
+    {
         $message = $this->getFixture("message-1symbols.eml");
 
         $attachments = $message->getAttachments();
 
         self::assertSame(1, $attachments->count());
 
-        /** @var Attachment $attachment */
+        /**
+ * @var Attachment $attachment
+*/
         $attachment = $attachments->first();
         // self::assertSame("Checkliste 10.,DAVIDGASSE 76-80;2;2.pdf", $attachment->description);
         // self::assertSame("Checkliste 10.,DAVIDGASSE 76-80;2;2.pdf", $attachment->name);
@@ -103,10 +109,11 @@ class WebklexTest extends FixtureWebklexMessage {
     }
 
     // https://github.com/Webklex/php-imap/commit/0a9b263eb4e29c2822cf7d68bec27a9af33ced2f
-    public function testMessageParts() {
+    public function testMessageParts()
+    {
         $message = $this->getFixture("message-2.eml");
 
-        self::assertSame("Test bad boundary", (string)$message->subject);
+        self::assertSame("Test bad boundary", (string) $message->subject);
 
         $attachments = $message->getAttachments();
         self::assertSame(1, $attachments->count());

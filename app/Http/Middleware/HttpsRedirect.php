@@ -2,7 +2,7 @@
 
 /**
  * Redirect to HTTPS if force_redirect is enabled.
- * 
+ *
  * https://stackoverflow.com/questions/28402726/laravel-5-redirect-to-https
  */
 namespace App\Http\Middleware;
@@ -11,7 +11,8 @@ use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 
-class HttpsRedirect {
+class HttpsRedirect
+{
 
     /**
      * The current proxy header mappings.
@@ -29,7 +30,7 @@ class HttpsRedirect {
     public function handle($request, Closure $next)
     {
         if (\Helper::isHttps()) {
-            //$request->setTrustedProxies( [ $request->getClientIp() ], array_keys($this->headers)); 
+            //$request->setTrustedProxies( [ $request->getClientIp() ], array_keys($this->headers));
             //!$request->secure()
             if (!\Helper::isCurrentUrlHttps()) {
                 return redirect()->secure($request->getRequestUri());
@@ -37,8 +38,8 @@ class HttpsRedirect {
         }
 
         // Correct protocol in $_SERVER
-        if (\Helper::isHttps() 
-            //&& !$request->secure() 
+        if (\Helper::isHttps()
+            //&& !$request->secure()
             && strtolower($_SERVER['HTTPS'] ?? '') != 'on'
         ) {
             $_SERVER['HTTPS'] = 'on';

@@ -19,9 +19,9 @@ class Attachment extends Model
 
     const DIRECTORY = 'attachment';
 
-    CONST DISK = 'private';
+    const DISK = 'private';
 
-    CONST MIME_TYPE_MAX_LENGTH = 127;
+    const MIME_TYPE_MAX_LENGTH = 127;
 
     // https://github.com/Webklex/laravel-imap/blob/master/src/IMAP/Attachment.php
     public static $types = [
@@ -37,7 +37,7 @@ class Attachment extends Model
     ];
 
     public static $type_extensions = [
-        self::TYPE_VIDEO => ['flv', 'mp4', 'm3u8', 'ts', '3gp', 'mov', 'avi', 'wmv']
+        self::TYPE_VIDEO => ['flv', 'mp4', 'm3u8', 'ts', '3gp', 'mov', 'avi', 'wmv'],
     ];
 
     public $timestamps = false;
@@ -106,7 +106,7 @@ class Attachment extends Model
             $without_ext = pathinfo($file_name, PATHINFO_FILENAME);
             $extension = pathinfo($file_name, PATHINFO_EXTENSION);
             // 125 because file name may have unicode symbols.
-            $file_name = \Helper::substrUnicode($without_ext, 0, 125-strlen($extension)-1);
+            $file_name = \Helper::substrUnicode($without_ext, 0, 125 - strlen($extension) - 1);
             $file_name .= '.'.$extension;
         }
 
@@ -288,14 +288,15 @@ class Attachment extends Model
         }
         $file_name = $this->file_name;
 
-        if ($file_name == "RFC822"){
+        if ($file_name == "RFC822") {
             $file_name = $file_name.'.eml';
         }
 
         return $this->getDisk()->download($this->getStorageFilePath(), $file_name, $headers);
     }
 
-    private function getDisk() {
+    private function getDisk()
+    {
         return Storage::disk(self::DISK);
     }
 
@@ -397,7 +398,7 @@ class Attachment extends Model
      */
     public static function deleteAttachments($attachments)
     {
-        if (!$attachments instanceof \Illuminate\Support\Collection) { 
+        if (!$attachments instanceof \Illuminate\Support\Collection) {
             $attachments = collect($attachments);
         }
 
@@ -434,8 +435,11 @@ class Attachment extends Model
 
         try {
             $attachment_file = new \Illuminate\Http\UploadedFile(
-                $this->getLocalFilePath(), $this->file_name,
-                null, null, true
+                $this->getLocalFilePath(),
+                $this->file_name,
+                null,
+                null,
+                true
             );
 
             $file_info = Attachment::saveFileToDisk($new_attachment, $new_attachment->file_name, '', $attachment_file);

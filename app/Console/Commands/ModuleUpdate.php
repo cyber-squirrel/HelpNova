@@ -73,7 +73,6 @@ class ModuleUpdate extends Command
                     continue;
                 }
                 if (!empty($dir_module['version']) && version_compare($dir_module['version'], $module->get('version'), '>')) {
-
                     $update_result = \App\Module::updateModule($dir_module['alias']);
 
                     $this->info('['.$update_result['module_name'].' Module'.']');

@@ -92,7 +92,6 @@ class SendNotificationToUsers implements ShouldQueue
         $global_exception = null;
 
         foreach ($this->users as $user) {
-
             // User can ne deleted from DB.
             if (!isset($user->id)) {
                 continue;

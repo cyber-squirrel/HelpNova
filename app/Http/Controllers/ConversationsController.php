@@ -84,7 +84,6 @@ class ConversationsController extends Controller
             if ($folder) {
                 // Check if conversation can be located in the passed folder_id
                 if (!$conversation->isInFolderAllowed($folder)) {
-
                     // Without reflash green flash will not be displayed on assignee change
                     \Session::reflash();
                     //$request->session()->reflash();
@@ -159,7 +158,7 @@ class ConversationsController extends Controller
         // 1. Email has been received from a customer.
         // 2. Customer has been changed.
         // 3. Reply has been sent to the original customer email.
-        if ($conversation->customer_email 
+        if ($conversation->customer_email
             && count($customer_emails)
             && !in_array($conversation->customer_email, $customer_emails->pluck('email')->toArray())
         ) {
@@ -304,12 +303,12 @@ class ConversationsController extends Controller
                 if (isset($conv_view[$conversation->id][$viewer->id]['r']) && $viewer->id != $user->id) {
                     $viewers[] = [
                         'user'     => $viewer,
-                        'replying' => (int)$conv_view[$conversation->id][$viewer->id]['r']
+                        'replying' => (int) $conv_view[$conversation->id][$viewer->id]['r'],
                     ];
                 }
             }
             // Show replying first.
-            usort($viewers, function($a, $b) {
+            usort($viewers, function ($a, $b) {
                 return $b['replying'] <=> $a['replying'];
             });
         }
@@ -475,12 +474,12 @@ class ConversationsController extends Controller
                 $this->authorize('view', $orign_conv);
 
 
-		        // $thread = $orig_thread->replicate();
-		        // $thread->id = '';
-		        // $thread->message_id .= ".clone".crc32(mktime());
-		        // $thread->status = Thread::STATUS_ACTIVE;
-		        // $thread->conversation_id = $conversation->id;
-		        // $thread->save();
+                // $thread = $orig_thread->replicate();
+                // $thread->id = '';
+                // $thread->message_id .= ".clone".crc32(mktime());
+                // $thread->status = Thread::STATUS_ACTIVE;
+                // $thread->conversation_id = $conversation->id;
+                // $thread->save();
 
 
                 $now = date('Y-m-d H:i:s');
@@ -504,7 +503,8 @@ class ConversationsController extends Controller
                 $conversation->updateFolder();
                 $conversation->save();
                 
-                $thread = Thread::createExtended([
+                $thread = Thread::createExtended(
+                    [
                         'conversation_id' => $orig_thread->conversation_id,
                         'user_id' => $orig_thread->user_id,
                         'type' => $orig_thread->type,
@@ -572,7 +572,6 @@ class ConversationsController extends Controller
         $user = auth()->user();
 
         switch ($request->action) {
-
             // Change conversation user
             case 'conversation_change_user':
                 $conversation = Conversation::find($request->conversation_id);
@@ -705,7 +704,7 @@ class ConversationsController extends Controller
                 // Conversation type.
                 $type = Conversation::TYPE_EMAIL;
                 if (!empty($request->type)) {
-                    $type = (int)$request->type;
+                    $type = (int) $request->type;
                 } elseif ($conversation) {
                     $type = $conversation->type;
                 }
@@ -727,7 +726,7 @@ class ConversationsController extends Controller
                 }
 
                 $is_forward = false;
-                if (!empty($request->subtype) && (int)$request->subtype == Thread::SUBTYPE_FORWARD) {
+                if (!empty($request->subtype) && (int) $request->subtype == Thread::SUBTYPE_FORWARD) {
                     $is_forward = true;
                 }
 
@@ -791,7 +790,7 @@ class ConversationsController extends Controller
                     }
 
                     if ($validator->fails()) {
-                        foreach ($validator->errors()->getMessages()as $errors) {
+                        foreach ($validator->errors()->getMessages() as $errors) {
                             foreach ($errors as $field => $message) {
                                 $response['msg'] .= $message.' ';
                             }
@@ -822,8 +821,7 @@ class ConversationsController extends Controller
 
                 // Check max. message size.
                 if (!$response['msg']) {
-
-                    $max_message_size = (int)config('app.max_message_size');
+                    $max_message_size = (int) config('app.max_message_size');
                     if ($max_message_size) {
                         // Todo: take into account conversation history.
                         $message_size = mb_strlen($body, '8bit');
@@ -835,18 +833,17 @@ class ConversationsController extends Controller
                         if (count($attachments_ids)) {
                             $attachments_to_check = Attachment::select('size')->whereIn('id', $attachments_ids)->get();
                             foreach ($attachments_to_check as $attachment) {
-                                $message_size += (int)$attachment->size;
+                                $message_size += (int) $attachment->size;
                             }
                         }
 
-                        if ($message_size > $max_message_size*1024*1024) {
+                        if ($message_size > $max_message_size * 1024 * 1024) {
                             $response['msg'] = __('Message is too large — :info. Please shorten your message or remove some attachments.', ['info' => __('Max. Message Size').': '.$max_message_size.' MB']);
                         }
                     }
                 }
 
                 if (!$response['msg']) {
-
                     // Get attachments info
                     // Delete removed attachments.
                     $attachments_info = $this->processReplyAttachments($request);
@@ -865,7 +862,7 @@ class ConversationsController extends Controller
                     // Chat conversations in chat mode can not be undone.
                     $can_undo = true;
 
-                    $request_status = (int)$request->status;
+                    $request_status = (int) $request->status;
 
                     if ($new) {
                         // New conversation
@@ -879,7 +876,7 @@ class ConversationsController extends Controller
                         $conversation->source_type = Conversation::SOURCE_TYPE_WEB;
                     } else {
                         // Reply or note
-                        if ($request_status && $request_status != (int)$conversation->status) {
+                        if ($request_status && $request_status != (int) $conversation->status) {
                             $status_changed = true;
                         }
                         if (!empty($request->subject)) {
@@ -1307,7 +1304,7 @@ class ConversationsController extends Controller
                             $thread_copy->customer_id = $customer_tmp->id;
                             $thread_copy->has_attachments = $conversation->has_attachments;
                             $thread_copy->setTo($customer_email);
-                            // Reload the conversation, otherwise Thread observer will be 
+                            // Reload the conversation, otherwise Thread observer will be
                             // increasing threads_count for the first conversation.
                             $thread_copy->load('conversation');
                             $thread_copy->push();
@@ -1350,7 +1347,7 @@ class ConversationsController extends Controller
                         if ($show_view_link) {
                             $flash_text = __(':%tag_start%' . $identifier . ' added:%tag_end% :%view_start%View:%a_end%', $flash_vars);
                         } else {
-                            $flash_text = '<strong>'.__('%identifier% added',['%identifier%'=>$identifier]).'</strong>';
+                            $flash_text = '<strong>'.__('%identifier% added', ['%identifier%' => $identifier]).'</strong>';
                         }
                     } elseif ($is_note) {
                         $flash_type = 'warning';
@@ -1440,7 +1437,6 @@ class ConversationsController extends Controller
                 // Validation is not needed on draft create, fields can be empty
 
                 if (!$response['msg']) {
-
                     // Get attachments info
                     $attachments_info = $this->processReplyAttachments($request);
 
@@ -1461,7 +1457,7 @@ class ConversationsController extends Controller
 
                         $type = Conversation::TYPE_EMAIL;
                         if (!empty($request->type)) {
-                            $type = (int)$request->type;
+                            $type = (int) $request->type;
                         }
 
                         if ($type == Conversation::TYPE_PHONE) {
@@ -1531,8 +1527,8 @@ class ConversationsController extends Controller
                     }
 
                     // Conversation type.
-                    if (!empty($request->type) && array_key_exists((int)$request->type, Conversation::$types)) {
-                        $conversation->type = (int)$request->type;
+                    if (!empty($request->type) && array_key_exists((int) $request->type, Conversation::$types)) {
+                        $conversation->type = (int) $request->type;
                     }
 
                     // Save extra recipients to CC
@@ -1567,7 +1563,7 @@ class ConversationsController extends Controller
                         }
                         $thread->created_by_user_id = auth()->user()->id;
                         // User is forwarding a conversation.
-                        if (!empty($request->subtype) && (int)$request->subtype) {
+                        if (!empty($request->subtype) && (int) $request->subtype) {
                             $thread->subtype = $request->subtype;
                         }
                     }
@@ -1704,7 +1700,6 @@ class ConversationsController extends Controller
                 }
 
                 if (!$response['msg']) {
-
                     // Build attachments list.
                     $attachments = [];
                     foreach ($thread->attachments as $attachment) {
@@ -1723,7 +1718,7 @@ class ConversationsController extends Controller
                         'cc'          => $thread->getCcArray(),
                         'bcc'         => $thread->getBccArray(),
                         'body'        => $thread->body,
-                        'is_forward'  => (int)$thread->isForward(),
+                        'is_forward'  => (int) $thread->isForward(),
                         'attachments' => $attachments,
                     ];
                     $response['status'] = 'success';
@@ -1805,7 +1800,7 @@ class ConversationsController extends Controller
                     // Filter conversations by Assigned To column in Search.
                     if (!empty($request->params['user_id']) && !empty($request->filter['f'])) {
                         $filter = $request->filter ?? [];
-                        $filter['f']['assigned'] = (int)$request->params['user_id'];
+                        $filter['f']['assigned'] = (int) $request->params['user_id'];
 
                         $request->merge(['filter' => $filter]);
                     }
@@ -1963,7 +1958,7 @@ class ConversationsController extends Controller
                     $thread->body = \Helper::stripDangerousTags($thread->body);
 
                     $data = [
-                        'thread' => $thread
+                        'thread' => $thread,
                     ];
                     $response['html'] = \View::make('conversations/partials/edit_thread')->with($data)->render();
 
@@ -1990,7 +1985,6 @@ class ConversationsController extends Controller
                     $response['body'] = $thread->getCleanBody();
 
                     if (strip_tags($response['body'])) {
-
                         // Update the preview for the conversation if needed.
                         $last_thread = $thread->conversation->getLastThread([Thread::TYPE_CUSTOMER, Thread::TYPE_MESSAGE, Thread::TYPE_NOTE]);
                         if ($last_thread && $last_thread->id == $thread->id) {
@@ -2124,7 +2118,9 @@ class ConversationsController extends Controller
                     return \Response::json($response);
                 }
 
-                $response = \Eventy::filter('conversations.empty_folder', $response, 
+                $response = \Eventy::filter(
+                    'conversations.empty_folder',
+                    $response,
                     $request->mailbox_id,
                     $request->folder_id
                 );
@@ -2213,7 +2209,6 @@ class ConversationsController extends Controller
                 }
 
                 if (!empty($request->merge_conversation_id) && is_array($request->merge_conversation_id)) {
-                    
                     $sigle_conv = count($request->merge_conversation_id) == 1;
 
                     foreach ($request->merge_conversation_id as $merge_conversation_id) {
@@ -2314,7 +2309,7 @@ class ConversationsController extends Controller
 
                 if (!$response['msg']) {
                     $response['html'] = \View::make('conversations/partials/merge_search_result')->with([
-                            'conversation' => $conversation
+                            'conversation' => $conversation,
                         ])->render();
                     $response['status'] = 'success';
                 }
@@ -2373,7 +2368,7 @@ class ConversationsController extends Controller
                     $mailbox = Mailbox::find($request->mailbox_id);
 
                     if ($mailbox && $mailbox->userHasAccess($user->id)) {
-                        $conversation_id = (int)$request->conversation_id ?? 0;
+                        $conversation_id = (int) $request->conversation_id ?? 0;
 
                         $prev_conversations = $mailbox->conversations()
                             ->where('customer_id', $customer->id)
@@ -2563,7 +2558,7 @@ class ConversationsController extends Controller
             abort(403);
         }
 
-        $mailboxes = \Eventy::filter( 'conversations.move_conv.mailboxes', $user->mailboxesCanView() );
+        $mailboxes = \Eventy::filter('conversations.move_conv.mailboxes', $user->mailboxesCanView());
 
         return view('conversations/ajax_html/move_conv', [
             'conversation' => $conversation,
@@ -2624,7 +2619,6 @@ class ConversationsController extends Controller
         $user = auth()->user();
 
         if ($mailbox_id) {
-
             $mailbox = Mailbox::find($mailbox_id);
             if (!$mailbox) {
                 abort(404);
@@ -2694,7 +2688,7 @@ class ConversationsController extends Controller
             $after_send = $conversation->mailbox->getUserSettings($user->id)->after_send;
         }
 
-        // When creating a new conversation. 
+        // When creating a new conversation.
         if (!empty($request->is_create) && $after_send != MailboxUser::AFTER_SEND_STAY) {
             return route('mailboxes.view.folder', ['id' => $conversation->mailbox_id, 'folder_id' => $conversation->folder_id]);
         }
@@ -2806,7 +2800,7 @@ class ConversationsController extends Controller
             $query_conversations = Conversation::getQueryByFolder($folder, $user->id);
 
             if (!empty($request->params['user_id'])) {
-                $query_conversations->where('conversations.user_id', (int)$request->params['user_id']);
+                $query_conversations->where('conversations.user_id', (int) $request->params['user_id']);
             }
 
             $conversations = $folder->queryAddOrderBy($query_conversations)->paginate(Conversation::DEFAULT_LIST_SIZE, ['*'], 'page', $request->page);
@@ -2861,7 +2855,7 @@ class ConversationsController extends Controller
         }
 
         // Jump to the conversation if searching by conversation number.
-        if (count($conversations) == 1 
+        if (count($conversations) == 1
             && $conversations[0]->number == $q
             && empty($filters)
             && !$request->x_embed
@@ -2889,7 +2883,7 @@ class ConversationsController extends Controller
         });
         $search_mailbox = null;
         if (isset($filters['mailbox'])) {
-            $mailbox_id = (int)$filters['mailbox'];
+            $mailbox_id = (int) $filters['mailbox'];
             if ($mailbox_id && in_array($mailbox_id, $mailboxes->pluck('id')->toArray())) {
                 foreach ($mailboxes as $mailbox_item) {
                     if ($mailbox_item->id == $mailbox_id) {
@@ -2999,7 +2993,8 @@ class ConversationsController extends Controller
         $mailbox_ids = $user->mailboxesIdsCanView();
 
         // Filters
-        $filters = $this->getSearchFilters($request);;
+        $filters = $this->getSearchFilters($request);
+        ;
 
         // Search query
         $q = $this->getSearchQuery($request);
@@ -3115,7 +3110,7 @@ class ConversationsController extends Controller
         }
 
         if (!empty($request->params['user_id'])) {
-            $query_conversations->where('conversations.user_id', (int)$request->params['user_id']);
+            $query_conversations->where('conversations.user_id', (int) $request->params['user_id']);
         }
 
         return $query_conversations->paginate(Conversation::DEFAULT_LIST_SIZE);
@@ -3139,7 +3134,7 @@ class ConversationsController extends Controller
             }
             $attachments_to_remove = array_diff($attachments_all, $attachments);
             $attachments_to_remove = array_diff($attachments_to_remove, $embeds);
-            if (count($attachments) 
+            if (count($attachments)
                 && count($attachments) != count($embeds)
             ) {
                 $has_attachments = true;

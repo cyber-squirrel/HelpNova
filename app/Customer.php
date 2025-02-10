@@ -652,7 +652,8 @@ class Customer extends Model
             return [[
                 'value' => '',
                 'type' => self::PHONE_TYPE_WORK,
-            ]];
+            ],
+            ];
         } else {
             return [];
         }
@@ -684,7 +685,7 @@ class Customer extends Model
             if (in_array($data['value'], $list)) {
                 unset($phones_array[$i]);
             } else {
-                $list[] = $data['value'];         
+                $list[] = $data['value'];
             }
         }
 
@@ -711,14 +712,14 @@ class Customer extends Model
                     $phones[] = [
                         'value' => (string) $phone['value'],
                         'type'  => (int) $phone['type'],
-                        'n'     => (string)\Helper::phoneToNumeric($phone['value']),
+                        'n'     => (string) \Helper::phoneToNumeric($phone['value']),
                     ];
                 }
             } else {
                 $phones[] = [
                     'value' => (string) $phone,
                     'type'  => self::PHONE_TYPE_WORK,
-                    'n'     => (string)\Helper::phoneToNumeric($phone),
+                    'n'     => (string) \Helper::phoneToNumeric($phone),
                 ];
             }
         }
@@ -776,7 +777,8 @@ class Customer extends Model
             return [[
                 'type' => '',
                 'value' => '',
-            ]];
+            ],
+            ];
         } else {
             return [];
         }
@@ -856,11 +858,10 @@ class Customer extends Model
         foreach ($list as $social_profile) {
             if (is_array($social_profile)) {
                 if (!empty($social_profile['value']) && !empty($social_profile['type'])) {
-
                     $type = null;
 
                     if (is_numeric($social_profile['type']) && in_array($social_profile['type'], array_keys(self::$social_types))) {
-                        $type = (int)$social_profile['type'];
+                        $type = (int) $social_profile['type'];
                     } else {
                         // Find type.
                         foreach (self::$social_types as $type_id => $type_name) {
@@ -1142,7 +1143,7 @@ class Customer extends Model
      */
     public function url()
     {
-        return route('customers.update', ['id'=>$this->id]);
+        return route('customers.update', ['id' => $this->id]);
     }
 
     /**
@@ -1152,7 +1153,7 @@ class Customer extends Model
      */
     public function urlView()
     {
-        return route('customers.conversations', ['id'=>$this->id]);
+        return route('customers.conversations', ['id' => $this->id]);
     }
 
     /**
@@ -1558,4 +1559,3 @@ class Customer extends Model
         return $customer;
     }
 }
-

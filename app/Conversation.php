@@ -284,6 +284,7 @@ class Conversation extends Model
 
     /**
      * Cached mailbox.
+     *
      * @return [type] [description]
      */
     public function mailbox_cached()
@@ -652,7 +653,7 @@ class Conversation extends Model
         $this->user_id = $user_id;
         $this->updateFolder();
         $this->user_updated_at = $now;
-		
+        
         // If user was previously following the conversation then unfollow
         if (!is_null($user_id)) {
             $follower = Follower::where('conversation_id', $this->id)
@@ -1009,7 +1010,6 @@ class Conversation extends Model
 
         // Get ids of all the conversations starred by user and cache them
         if (!isset(self::$starred_conversation_ids[$mailbox_id])) {
-            
             self::$starred_conversation_ids[$mailbox_id] = self::getUserStarredConversationIds($mailbox_id, $user_id);
         }
 
@@ -1736,7 +1736,7 @@ class Conversation extends Model
                         $viewers[$conversation->id] = [
                             'user'     => null,
                             'user_id'  => $user_id,
-                            'replying' => true
+                            'replying' => true,
                         ];
                         $user_ids[] = $user_id;
                         break;
@@ -1747,7 +1747,7 @@ class Conversation extends Model
                     $viewers[$conversation->id] = [
                         'user'     => null,
                         'user_id'  => $first_user_id,
-                        'replying' => false
+                        'replying' => false,
                     ];
                     $user_ids[] = $first_user_id;
                 }
@@ -1900,9 +1900,8 @@ class Conversation extends Model
         \Eventy::action('conversations.before_delete_forever', $conversation_ids);
 
         //$conversation_ids = $conversations->pluck('id')->toArray();
-        for ($i=0; $i < ceil(count($conversation_ids) / \Helper::IN_LIMIT); $i++) { 
-
-            $ids = array_slice($conversation_ids, $i*\Helper::IN_LIMIT, \Helper::IN_LIMIT);
+        for ($i = 0; $i < ceil(count($conversation_ids) / \Helper::IN_LIMIT); $i++) {
+            $ids = array_slice($conversation_ids, $i * \Helper::IN_LIMIT, \Helper::IN_LIMIT);
 
             // Delete attachments.
             $thread_ids = Thread::whereIn('conversation_id', $ids)->pluck('id')->toArray();
@@ -2015,12 +2014,10 @@ class Conversation extends Model
 
         // Add attachments if needed.
         if ($include_attachments) {
-
             $replies = $this->getReplies();
 
             $has_attachments = false;
             foreach ($replies as $reply_thread) {
-                
                 $thread_has_attachments = false;
                 foreach ($reply_thread->attachments as $attachment) {
                     $new_attachment = $attachment->replicate();
@@ -2031,8 +2028,11 @@ class Conversation extends Model
 
                     try {
                         $attachment_file = new \Illuminate\Http\UploadedFile(
-                            $attachment->getLocalFilePath(), $attachment->file_name,
-                            null, null, true
+                            $attachment->getLocalFilePath(),
+                            $attachment->file_name,
+                            null,
+                            null,
+                            true
                         );
 
                         $file_info = Attachment::saveFileToDisk($new_attachment, $new_attachment->file_name, '', $attachment_file);
@@ -2074,7 +2074,8 @@ class Conversation extends Model
     //     return self::$email_history_codes[(int)$this->email_history] ?? 'global';
     // }
 
-    public static function getEmailHistoryName($code) {
+    public static function getEmailHistoryName($code)
+    {
         $label = '';
 
         switch ($code) {
@@ -2122,7 +2123,7 @@ class Conversation extends Model
         $conversation->customer_id = $customer->id;
         $conversation->customer_email = $customer->getMainEmail().'';
         $conversation->state = $data['state'] ?? Conversation::STATE_PUBLISHED;
-        $conversation->imported = (int)($data['imported'] ?? false);
+        $conversation->imported = (int) ($data['imported'] ?? false);
         $conversation->closed_at = $data['closed_at'] ?? null;
         $conversation->channel = $data['channel'] ?? null;
         $conversation->preview = '';
@@ -2150,7 +2151,6 @@ class Conversation extends Model
         $last_customer_id = null;
         $thread_result = null;
         foreach ($threads as $thread) {
-
             $thread['conversation_id'] = $conversation->id;
 
             if ($conversation->imported) {
@@ -2225,8 +2225,7 @@ class Conversation extends Model
 
         $result = \Eventy::filter('conversations.table_sorting', $result);
 
-        if (
-            !empty($request->sorting['sort_by']) && !empty($request->sorting['order']) &&
+        if (!empty($request->sorting['sort_by']) && !empty($request->sorting['order']) &&
             in_array($request->sorting['sort_by'], ['subject', 'number', 'date']) &&
             in_array($request->sorting['order'], ['asc', 'desc'])
         ) {
@@ -2247,7 +2246,7 @@ class Conversation extends Model
         if (!$query_conversations) {
             $query_conversations = Conversation::select('conversations.*');
         }
-		
+        
         // https://github.com/laravel/framework/issues/21242
         // https://github.com/laravel/framework/pull/27675
         $query_conversations->groupBy(array_merge(['conversations.id'], $group_by));
@@ -2276,14 +2275,14 @@ class Conversation extends Model
             $query_conversations->where(function ($query) use ($like, $filters, $q, $like_op) {
 
                 // It needs to be sanitized to avoid "Numeric value out of range" on PostgreSQL.
-                $q_int = (int)$q;
+                $q_int = (int) $q;
                 $q_int = $q_int > \Helper::DB_INT_MAX ? \Helper::DB_INT_MAX : $q_int;
 
                 $query->where('conversations.subject', $like_op, $like)
                     ->orWhere('conversations.customer_email', $like_op, $like)
                     ->orWhere('conversations.'.self::numberFieldName(), $q_int)
                     ->orWhere('conversations.id', $q_int)
-					->orWhere('customers.first_name', $like_op, $like)
+                    ->orWhere('customers.first_name', $like_op, $like)
                     ->orWhere('customers.last_name', $like_op, $like)
                     ->orWhere(\DB::raw('CONCAT(customers.first_name, " ", customers.last_name)'), $like_op, $like)
                     ->orWhere('threads.body', $like_op, $like)
@@ -2369,7 +2368,7 @@ class Conversation extends Model
         }
 
         if (!self::queryContainsStr($query_sql, '`customers`.`id`')) {
-            $query_conversations->leftJoin('customers', 'conversations.customer_id', '=' ,'customers.id');
+            $query_conversations->leftJoin('customers', 'conversations.customer_id', '=', 'customers.id');
         }
 
         $query_conversations = \Eventy::filter('search.conversations.apply_filters', $query_conversations, $filters, $q);
@@ -2457,7 +2456,7 @@ class Conversation extends Model
         return $this->isChat() && \Helper::isChatMode() && \Route::is('conversations.view');
     }
 
-    public static function getChats($mailbox_id, $offset = 0, $limit = self::CHATS_LIST_SIZE+1)
+    public static function getChats($mailbox_id, $offset = 0, $limit = self::CHATS_LIST_SIZE + 1)
     {
         $chats = Conversation::where('type', self::TYPE_CHAT)
             ->where('mailbox_id', $mailbox_id)

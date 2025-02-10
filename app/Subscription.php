@@ -256,14 +256,14 @@ class Subscription extends Model
         // Filter subscribers
         foreach ($subscriptions as $i => $subscription) {
             // Actions on conversation where user is assignee
-            if (in_array($subscription->event, [self::EVENT_CONVERSATION_ASSIGNED_TO_ME, self::EVENT_CUSTOMER_REPLIED_TO_MY, self::EVENT_USER_REPLIED_TO_MY]) 
+            if (in_array($subscription->event, [self::EVENT_CONVERSATION_ASSIGNED_TO_ME, self::EVENT_CUSTOMER_REPLIED_TO_MY, self::EVENT_USER_REPLIED_TO_MY])
                 && ($conversation->user_id != $subscription->user_id && !\Eventy::filter('subscription.is_user_assignee', false, $subscription, $conversation))
             ) {
                 continue;
             }
 
             // Check if user is following this conversation.
-            if ($subscription->event == self::EVENT_FOLLOWED_CONVERSATION_UPDATED 
+            if ($subscription->event == self::EVENT_FOLLOWED_CONVERSATION_UPDATED
                 && !$conversation->isUserFollowing($subscription->user_id)
             ) {
                 continue;
@@ -349,7 +349,6 @@ class Subscription extends Model
             }
 
             foreach ($users_to_notify as $medium => $medium_users_to_notify) {
-
                 // Remove current user from recipients if action caused by current user
                 foreach ($medium_users_to_notify as $i => $user) {
                     if ($user->id == $event['caused_by_user_id']) {
@@ -380,7 +379,7 @@ class Subscription extends Model
         }
 
         // - Menu notification (uses same medium as for Email, if email notifications are disabled - use Browser notificaitons)
-        if (!empty($notify[self::MEDIUM_EMAIL]) 
+        if (!empty($notify[self::MEDIUM_EMAIL])
             || !empty($notify[self::MEDIUM_BROWSER])
             || !empty($notify[self::MEDIUM_MENU])
         ) {

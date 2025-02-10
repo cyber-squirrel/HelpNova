@@ -21,21 +21,25 @@ use \ReflectionException;
  *
  * @package Tests\fixtures
  */
-abstract class FixtureWebklexMessage extends TestCase {
+abstract class FixtureWebklexMessage extends TestCase
+{
 
     /**
      * Client manager
+     *
      * @var ClientManager $manager
      */
     protected static $manager;
 
     /**
      * FixtureTestCase constructor.
+     *
      * @param string|null $name
      * @param array $data
      * @param $dataName
      */
-    final public function __construct(?string $name = null, array $data = [], $dataName = '') {
+    final public function __construct(?string $name = null, array $data = [], $dataName = '')
+    {
         parent::__construct($name, $data, $dataName);
 
         self::$manager = new ClientManager([
@@ -59,6 +63,7 @@ abstract class FixtureWebklexMessage extends TestCase {
 
     /**
      * Get a fixture message
+     *
      * @param string $template
      *
      * @return Message
@@ -73,8 +78,9 @@ abstract class FixtureWebklexMessage extends TestCase {
      * @throws ResponseException
      * @throws RuntimeException
      */
-    final public function getFixture(string $template, ?Config $config = null) : Message {
-        $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, "..",  "Messages", $template]);
+    final public function getFixture(string $template, ?Config $config = null) : Message
+    {
+        $filename = implode(DIRECTORY_SEPARATOR, [__DIR__, "..", "Messages", $template]);
         $message = Message::fromFile($filename, $config);
         self::assertInstanceOf(Message::class, $message);
 

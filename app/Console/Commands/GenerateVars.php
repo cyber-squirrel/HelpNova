@@ -57,7 +57,7 @@ class GenerateVars extends Command
             // https://github.com/freescout-help-desk/freescout/issues/4369
             $content = preg_replace_callback(
                 "#(:[ ]*\")(.*)(\"[,\r\n])#",
-                function($v) {
+                function ($v) {
                     return $v[1].str_replace('"', '\"', $v[2]).$v[3];
                 },
                 $content
@@ -73,7 +73,7 @@ class GenerateVars extends Command
                 } else {
                     \Storage::put('js/vars.js', $content);
                 }
-                $this->info("Created: ".substr($file_path, strlen(base_path())+1));
+                $this->info("Created: ".substr($file_path, strlen(base_path()) + 1));
             } catch (\Exception $e) {
                 $msg = "Error occurred saving /storage/app/public/js/vars.js. ".\Helper::formatException($e);
                 \Log::error($msg);

@@ -380,7 +380,6 @@ class CustomersController extends Controller
         $user = auth()->user();
 
         switch ($request->action) {
-
             // Change conversation customer.
             case 'create':
                 $validator_config = [
@@ -398,7 +397,7 @@ class CustomersController extends Controller
                 $validator = Validator::make($request->all(), $validator_config);
 
                 if ($validator->fails()) {
-                    foreach ($validator->errors()->getMessages()as $errors) {
+                    foreach ($validator->errors()->getMessages() as $errors) {
                         foreach ($errors as $field => $message) {
                             $response['msg'] .= $message.' ';
                         }
@@ -406,7 +405,6 @@ class CustomersController extends Controller
                 }
 
                 if (!$response['msg']) {
-                   
                     $customer = Customer::create($request->email, $request->all());
                     if ($customer) {
                         $response['email']  = $request->email;

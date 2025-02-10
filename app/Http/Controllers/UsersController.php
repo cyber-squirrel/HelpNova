@@ -140,7 +140,8 @@ class UsersController extends Controller
     public function getUsersForSidebar($except_id)
     {
         if (auth()->user()->isAdmin()) {
-            return User::sortUsers(User::nonDeleted()->get());/*->except($except_id)*/;
+            return User::sortUsers(User::nonDeleted()->get());
+/*->except($except_id)*/;
         } else {
             return [];
         }
@@ -300,7 +301,7 @@ class UsersController extends Controller
             $new_has_permission = in_array($permission_id, $user_permissions);
 
             if ($user->hasPermission($permission_id, false) != $new_has_permission) {
-                $permissions[$permission_id] = (int)(bool)$new_has_permission;
+                $permissions[$permission_id] = (int) (bool) $new_has_permission;
                 $save_user = true;
             }
         }
@@ -373,7 +374,6 @@ class UsersController extends Controller
         $auth_user = auth()->user();
 
         switch ($request->action) {
-
             // Both send and resend
             case 'send_invite':
                 if (!$auth_user->isAdmin()) {
@@ -497,7 +497,6 @@ class UsersController extends Controller
                 }
 
                 if (!$response['msg']) {
-
                     $user->deleteUser($auth_user, $request->assign_user);
 
                     \Session::flash('flash_success_floating', __('User deleted').': '.$user->getFullName());

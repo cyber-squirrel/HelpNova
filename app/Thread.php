@@ -346,7 +346,7 @@ class Thread extends Model
         // Add target="_blank" to links.
         $pattern = '/<a(.*?)?href=[\'"]?[\'"]?(.*?)?>/i';
 
-        $body = preg_replace_callback($pattern, function($m){
+        $body = preg_replace_callback($pattern, function ($m) {
             $tpl = array_shift($m);
             $href = isset($m[1]) ? $m[1] : null;
 
@@ -359,10 +359,9 @@ class Thread extends Model
                 return $tpl;
             }
 
-            return preg_replace_callback('/href=/i', function($m2){
+            return preg_replace_callback('/href=/i', function ($m2) {
                 return sprintf('target="_blank" %s', array_shift($m2));
             }, $tpl);
-
         }, $body) ?: $body;
 
         return $body;
@@ -645,7 +644,6 @@ class Thread extends Model
 
         // Did this
         if ($this->type == self::TYPE_LINEITEM) {
-
             if ($this->action_type == self::ACTION_TYPE_STATUS_CHANGED) {
                 if ($conversation_number) {
                     $did_this = __(':person marked as :status_name conversation #:conversation_number', ['status_name' => $this->getStatusName(), 'conversation_number' => $conversation_number]);
@@ -1039,7 +1037,7 @@ class Thread extends Model
 
         $bcc = \MailHelper::sanitizeEmails($data['bcc'] ?? []);
         $thread->setBcc($bcc);
-        $thread->imported = (int)($data['imported'] ?? false);
+        $thread->imported = (int) ($data['imported'] ?? false);
         if ($thread->imported && !empty($data['created_at'])) {
             $thread->created_at = self::utcStringToServerDate($data['created_at']);
         }
@@ -1056,19 +1054,15 @@ class Thread extends Model
         if (!empty($data['attachments'])) {
             $has_attachments = false;
             foreach ($data['attachments'] as $attachment) {
-
                 $content = null;
                 $uploaded_file = null;
 
                 if (is_object($attachment) && get_class($attachment) == 'Illuminate\Http\UploadedFile') {
-
                     $uploaded_file = $attachment;
                     $attachment = [];
                     $attachment['file_name'] = $uploaded_file->getClientOriginalName();
                     $attachment['mime_type'] = $uploaded_file->getMimeType();
-
                 } else {
-
                     if (empty($attachment['file_name'])
                         //|| empty($attachment['mime_type'])
                         || (empty($attachment['data']) && empty($attachment['file_url']))
@@ -1093,8 +1087,11 @@ class Thread extends Model
                             continue;
                         }
                         $uploaded_file = new \Illuminate\Http\UploadedFile(
-                            $file_path, basename($file_path),
-                            null, null, true
+                            $file_path,
+                            basename($file_path),
+                            null,
+                            null,
+                            true
                         );
                         if (empty($attachment['mime_type'])) {
                             $attachment['mime_type'] = mime_content_type($file_path);
@@ -1160,12 +1157,12 @@ class Thread extends Model
 
                 // Set specific status
                 if (!empty($data['status'])) {
-                    if ((int)$conversation->status != (int)$data['status']) {
+                    if ((int) $conversation->status != (int) $data['status']) {
                         $update_folder = true;
                     }
                     $conversation->status = $data['status'];
                 } else {
-                    if ((int)$conversation->status != Conversation::STATUS_ACTIVE) {
+                    if ((int) $conversation->status != Conversation::STATUS_ACTIVE) {
                         $update_folder = true;
                     }
                     // Reply from customer makes conversation active
@@ -1176,12 +1173,12 @@ class Thread extends Model
                 $conversation->user_updated_at = $now;
                 
                 if (!empty($data['status'])) {
-                    if ((int)$conversation->status != (int)$data['status']) {
+                    if ((int) $conversation->status != (int) $data['status']) {
                         $update_folder = true;
                     }
                     $conversation->status = $data['status'];
                 } else {
-                    if ((int)$conversation->status != Conversation::STATUS_PENDING) {
+                    if ((int) $conversation->status != Conversation::STATUS_PENDING) {
                         $update_folder = true;
                     }
                     // Reply from customer makes conversation active
@@ -1501,7 +1498,8 @@ class Thread extends Model
     {
         \Helper::setPcreBacktrackLimit();
 
-        $body = preg_replace_callback("#(<img[^<>]+src=[\"'])data:image/([^;]+);base64,([^\"']+)([\"'])#",
+        $body = preg_replace_callback(
+            "#(<img[^<>]+src=[\"'])data:image/([^;]+);base64,([^\"']+)([\"'])#",
             function ($match) {
                 $attachment = null;
                 $data = base64_decode($match[3]);
@@ -1523,7 +1521,8 @@ class Thread extends Model
                 } else {
                     return $match[0];
                 }
-            }, $body
+            },
+            $body
         );
 
         return $body;
@@ -1545,7 +1544,7 @@ class Thread extends Model
     }
 
     // Sorts threads in desc order by created_at and ID.
-    // 
+    //
     // Threads has to be sorted by created_at and not by id.
     // https://github.com/freescout-helpdesk/freescout/issues/2938
     // Sometimes thread.created_at may be the same,
@@ -1589,7 +1588,7 @@ class Thread extends Model
     public function isSendStatusSuccess()
     {
         // We have not tried to send the email yet.
-        if ((int)$this->send_status == 0) {
+        if ((int) $this->send_status == 0) {
             return false;
         }
 

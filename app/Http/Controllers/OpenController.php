@@ -167,7 +167,7 @@ class OpenController extends Controller
         }
 
         // Only allow download if the attachment is public or if the token matches the hash of the contents
-        if ($token != $attachment->getToken() && (bool)$attachment->public !== true) {
+        if ($token != $attachment->getToken() && (bool) $attachment->public !== true) {
             return \Helper::denyAccess();
         }
 
@@ -196,7 +196,7 @@ class OpenController extends Controller
         if (config('app.download_attachments_via') == 'apache') {
             // Send using Apache mod_xsendfile.
             $response = response(null)
-               ->header('Content-Type' , $attachment->mime_type)
+               ->header('Content-Type', $attachment->mime_type)
                ->header('X-Sendfile', $attachment->getLocalFilePath());
 
             if (!$view_attachment) {
@@ -205,7 +205,7 @@ class OpenController extends Controller
         } elseif (config('app.download_attachments_via') == 'nginx') {
             // Send using Nginx.
             $response = response(null)
-               ->header('Content-Type' , $attachment->mime_type)
+               ->header('Content-Type', $attachment->mime_type)
                ->header('X-Accel-Redirect', $attachment->getLocalFilePath(false));
                
             if (!$view_attachment) {

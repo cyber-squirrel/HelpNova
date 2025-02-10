@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if ($user->isAdmin() 
+        if ($user->isAdmin()
             || $user->id == $model->id
             || $user->hasPermission(User::PERM_EDIT_USERS)
             || $user->canManageMailbox($model->id)

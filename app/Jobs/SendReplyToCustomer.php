@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
+
 //use Webklex\IMAP\Client;
 
 class SendReplyToCustomer implements ShouldQueue
@@ -80,7 +81,6 @@ class SendReplyToCustomer implements ShouldQueue
         if ($this->conversation->threads_count == 1 && count($this->threads) == 1) {
             $forward_child_thread = $this->threads[0];
             if ($forward_child_thread->isForwarded() && $forward_child_thread->getForwardParentConversation()) {
-
                 // Add replies from original conversation.
                 $forwarded_replies = $forward_child_thread->getForwardParentConversation()->getReplies();
                 $forwarded_replies = Thread::sortThreads($forwarded_replies);
@@ -121,7 +121,7 @@ class SendReplyToCustomer implements ShouldQueue
         // This process may stuck or make SendReplyToCustomer job die with
         // "Allowed memory size of NNN bytes exhausted" error.
         // https://github.com/freescout-helpdesk/freescout/issues/3632
-        if ($this->attempts() >= 1 && 
+        if ($this->attempts() >= 1 &&
             ($this->last_thread->send_status == SendLog::STATUS_ACCEPTED
                 || $this->last_thread->isSendStatusSuccess())
         ) {
@@ -145,7 +145,6 @@ class SendReplyToCustomer implements ShouldQueue
         // In-Reply-To and References headers.
         $references = '';
         if (!$new && !empty($last_customer_thread) && $last_customer_thread->message_id) {
-
             $headers['In-Reply-To'] = '<'.$last_customer_thread->message_id.'>';
             //$headers['References'] = '<'.$last_customer_thread->message_id.'>';
             // https://github.com/freescout-helpdesk/freescout/issues/3175
@@ -224,7 +223,7 @@ class SendReplyToCustomer implements ShouldQueue
 
         // For phone conversations we may need to get customer email.
         // https://github.com/freescout-helpdesk/freescout/issues/3270
-        if (!$this->customer_email && $this->conversation->isPhone()) {            
+        if (!$this->customer_email && $this->conversation->isPhone()) {
             $this->customer_email = $this->conversation->customer->getMainEmail();
             if (!$this->customer_email) {
                 return;
@@ -325,7 +324,7 @@ class SendReplyToCustomer implements ShouldQueue
             // SMTP response code is stored in the exception message:
             // Expected response code 235 but got code "535", with message...
             preg_match('#but got code "(\d+)",#', $error_message, $response_m);
-            $response_code = (int)($response_m[1] ?? 0);
+            $response_code = (int) ($response_m[1] ?? 0);
 
             // Retry job with delay.
             // https://stackoverflow.com/questions/35258175/how-can-i-create-delays-between-failed-queued-job-attempts-in-laravel
@@ -458,7 +457,7 @@ class SendReplyToCustomer implements ShouldQueue
 
                 try {
                     // https://github.com/freescout-helpdesk/freescout/issues/3502
-                    $imap_sent_folder = mb_convert_encoding($imap_sent_folder, "UTF7-IMAP","UTF-8");
+                    $imap_sent_folder = mb_convert_encoding($imap_sent_folder, "UTF7-IMAP", "UTF-8");
 
                     // https://github.com/Webklex/php-imap/issues/380
                     if (method_exists($client, 'getFolderByPath')) {

@@ -20,9 +20,11 @@ class SystemController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => [
+        $this->middleware('auth', [
+        'except' => [
             'cron'
-        ]]);
+        ],
+        ]);
     }
 
     /**
@@ -87,7 +89,7 @@ class SystemController extends Controller
         // Commands
         $commands_list = [
             'freescout:fetch-emails' => 'freescout:fetch-emails',
-            \Helper::getWorkerIdentifier() => 'queue:work'
+            \Helper::getWorkerIdentifier() => 'queue:work',
         ];
         foreach ($commands_list as $command_identifier => $command_name) {
             $status_texts = [];
@@ -288,9 +290,9 @@ class SystemController extends Controller
 
             case 'fetch_emails':
                 $params = [];
-                $params['--days'] = (int)$request->days;
-                $params['--unseen'] = (int)$request->unseen;
-                $params['--debug'] = (int)$request->debug;
+                $params['--days'] = (int) $request->days;
+                $params['--unseen'] = (int) $request->unseen;
+                $params['--debug'] = (int) $request->debug;
                 \Artisan::call('freescout:fetch-emails', $params, $outputLog);
                 break;
 
@@ -325,7 +327,6 @@ class SystemController extends Controller
         ];
 
         switch ($request->action) {
-
             case 'update':
                 try {
                     $status = \Updater::update();
