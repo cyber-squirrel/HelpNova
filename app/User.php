@@ -123,11 +123,11 @@ class User extends Authenticatable
         'permissions' => 'array',
     ];
     
-    public function __construct(array $attributes = array())
+    public function __construct(array $attributes = [])
     {
-        $this->setRawAttributes(array_merge($this->attributes, array(
+        $this->setRawAttributes(array_merge($this->attributes, [
             'timezone' => config('app.timezone') ?: User::DEFAULT_TIMEZONE
-        )), true);
+        ]), true);
         parent::__construct($attributes);
     }
 
@@ -146,7 +146,7 @@ class User extends Authenticatable
      */
     public function mailboxes()
     {
-        return $this->belongsToMany('App\Mailbox');
+        return $this->belongsToMany(\App\Mailbox::class);
     }
 
     /**
@@ -159,7 +159,7 @@ class User extends Authenticatable
 
     public function mailboxesWithSettings()
     {
-        return $this->belongsToMany('App\Mailbox')->as('settings')
+        return $this->belongsToMany(\App\Mailbox::class)->as('settings')
             ->withPivot('after_send')
             ->withPivot('hide')
             ->withPivot('mute')
@@ -171,7 +171,7 @@ class User extends Authenticatable
      */
     public function conversations()
     {
-        return $this->hasMany('App\Conversation');
+        return $this->hasMany(\App\Conversation::class);
     }
 
     /**
@@ -179,7 +179,7 @@ class User extends Authenticatable
      */
     public function folders()
     {
-        return $this->hasMany('App\Folder');
+        return $this->hasMany(\App\Folder::class);
     }
 
     /**
@@ -187,7 +187,7 @@ class User extends Authenticatable
      */
     public function subscriptions()
     {
-        return $this->hasMany('App\Subscription');
+        return $this->hasMany(\App\Subscription::class);
     }
 
     /**

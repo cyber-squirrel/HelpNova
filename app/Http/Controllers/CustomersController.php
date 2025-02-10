@@ -418,7 +418,7 @@ class CustomersController extends Controller
             // Conversations navigation
             case 'customers_pagination':
             
-                $customers = app('App\Http\Controllers\ConversationsController')->searchCustomers($request, $user);
+                $customers = app(\App\Http\Controllers\ConversationsController::class)->searchCustomers($request, $user);
 
                 $response['status'] = 'success';
 

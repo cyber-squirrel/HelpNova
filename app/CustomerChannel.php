@@ -22,7 +22,7 @@ class CustomerChannel extends Model
 
     public function customer()
     {
-        return $this->belongsTo('App\Customer');
+        return $this->belongsTo(\App\Customer::class);
     }
 
     public static function create($customer_id, $channel, $channel_id)

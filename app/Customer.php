@@ -466,7 +466,7 @@ class Customer extends Model
      */
     public function emails()
     {
-        return $this->hasMany('App\Email');
+        return $this->hasMany(\App\Email::class);
     }
 
     /**
@@ -474,7 +474,7 @@ class Customer extends Model
      */
     public function emails_cached()
     {
-        return $this->hasMany('App\Email')->rememberForever();
+        return $this->hasMany(\App\Email::class)->rememberForever();
     }
 
     /**
@@ -482,7 +482,7 @@ class Customer extends Model
      */
     public function conversations()
     {
-        return $this->hasMany('App\Conversation');
+        return $this->hasMany(\App\Conversation::class);
     }
 
     /**

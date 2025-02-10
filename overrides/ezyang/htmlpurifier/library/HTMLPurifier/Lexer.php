@@ -160,7 +160,7 @@ class HTMLPurifier_Lexer
      * @type array
      */
     protected $_special_entity2str =
-        array(
+        [
             '&quot;' => '"',
             '&amp;' => '&',
             '&lt;' => '<',
@@ -168,7 +168,7 @@ class HTMLPurifier_Lexer
             '&#39;' => "'",
             '&#039;' => "'",
             '&#x27;' => "'"
-        );
+        ];
 
     public function parseText($string, $config) {
         return $this->parseData($string, false, $config);
@@ -246,7 +246,7 @@ class HTMLPurifier_Lexer
     {
         return preg_replace_callback(
             '/<!\[CDATA\[(.+?)\]\]>/s',
-            array('HTMLPurifier_Lexer', 'CDATACallback'),
+            ['HTMLPurifier_Lexer', 'CDATACallback'],
             $string
         );
     }
@@ -260,7 +260,7 @@ class HTMLPurifier_Lexer
     {
         return preg_replace_callback(
             '#<!--//--><!\[CDATA\[//><!--(.+?)//--><!\]\]>#s',
-            array('HTMLPurifier_Lexer', 'CDATACallback'),
+            ['HTMLPurifier_Lexer', 'CDATACallback'],
             $string
         );
     }
@@ -369,7 +369,7 @@ class HTMLPurifier_Lexer
      */
     public function extractBody($html)
     {
-        $matches = array();
+        $matches = [];
         $result = preg_match('|(.*?)<body[^>]*>(.*)</body>|is', $html ?? '', $matches);
         if ($result) {
             // Make sure it's not in a comment

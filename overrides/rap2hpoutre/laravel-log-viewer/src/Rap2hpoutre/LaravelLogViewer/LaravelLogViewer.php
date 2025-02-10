@@ -147,7 +147,7 @@ class LaravelLogViewer
      */
     public function all()
     {
-        $log = array();
+        $log = [];
 
         if (!$this->file) {
             $log_file = (!$this->folder) ? $this->getFiles() : $this->getFolderFiles();
@@ -196,7 +196,7 @@ class LaravelLogViewer
                             continue;
                         }
 
-                        $log[] = array(
+                        $log[] = [
                             'context' => $current[3],
                             'level' => $level,
                             'folder' => $this->folder,
@@ -206,7 +206,7 @@ class LaravelLogViewer
                             'text' => $current[4],
                             'in_file' => isset($current[5]) ? $current[5] : null,
                             'stack' => preg_replace("/^\n*/", '', $log_data[$i])
-                        );
+                        ];
                     }
                 }
             }
@@ -244,7 +244,7 @@ class LaravelLogViewer
 	 */
     public function foldersAndFiles($path = null)
     {
-	    $contents = array();
+	    $contents = [];
 	    $dir = $path ? $path : $this->storage_path;
 	    foreach (scandir($dir) as $node) {
 		    if ($node == '.' || $node == '..') continue;

@@ -148,7 +148,7 @@ class Controller extends BaseController
             $translation->value = (string) $value ?: null;
             $translation->status = Translation::STATUS_CHANGED;
             $translation->save();
-            return array('status' => 'ok');
+            return ['status' => 'ok'];
         }
     }
 

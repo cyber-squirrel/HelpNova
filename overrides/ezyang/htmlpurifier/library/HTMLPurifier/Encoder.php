@@ -31,7 +31,7 @@ class HTMLPurifier_Encoder
      */
     public static function unsafeIconv($in, $out, $text)
     {
-        set_error_handler(array('HTMLPurifier_Encoder', 'muteErrorHandler'));
+        set_error_handler(['HTMLPurifier_Encoder', 'muteErrorHandler']);
         $r = iconv($in, $out, $text);
         restore_error_handler();
         return $r;
@@ -440,7 +440,7 @@ class HTMLPurifier_Encoder
             // Undo our previous fix in convertToUTF8, otherwise iconv will barf
             $ascii_fix = self::testEncodingSupportsASCII($encoding);
             if (!$escape && !empty($ascii_fix)) {
-                $clear_fix = array();
+                $clear_fix = [];
                 foreach ($ascii_fix as $utf8 => $native) {
                     $clear_fix[$utf8] = '';
                 }
@@ -575,7 +575,7 @@ class HTMLPurifier_Encoder
         // If ICONV_TRUNCATE, all calls involve one character inputs,
         // so bug is not triggered.
         // If ICONV_UNUSABLE, this call is irrelevant
-        static $encodings = array();
+        static $encodings = [];
         if (!$bypass) {
             if (isset($encodings[$encoding])) {
                 return $encodings[$encoding];
@@ -583,15 +583,15 @@ class HTMLPurifier_Encoder
             $lenc = strtolower($encoding);
             switch ($lenc) {
                 case 'shift_jis':
-                    return array("\xC2\xA5" => '\\', "\xE2\x80\xBE" => '~');
+                    return ["\xC2\xA5" => '\\', "\xE2\x80\xBE" => '~'];
                 case 'johab':
-                    return array("\xE2\x82\xA9" => '\\');
+                    return ["\xE2\x82\xA9" => '\\'];
             }
             if (strpos($lenc, 'iso-8859-') === 0) {
-                return array();
+                return [];
             }
         }
-        $ret = array();
+        $ret = [];
         if (self::unsafeIconv('UTF-8', $encoding, 'a') === false) {
             return false;
         }

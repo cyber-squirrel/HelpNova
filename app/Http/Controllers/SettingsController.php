@@ -140,10 +140,10 @@ class SettingsController extends Controller
                 break;
             case 'alerts':
                 $subscriptions_defaults = Subscription::getDefaultSubscriptions();
-                $subscriptions = array();
+                $subscriptions = [];
                 foreach ($subscriptions_defaults as $medium => $subscriptions_for_medium) {
                     foreach ($subscriptions_defaults[$medium] as $subscription) {
-                        $subscriptions[] = (object) array("medium" => $medium, "event" => $subscription);
+                        $subscriptions[] = (object) ["medium" => $medium, "event" => $subscription];
                     }
                 }
                 $params = [
