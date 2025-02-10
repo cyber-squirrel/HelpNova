@@ -567,7 +567,7 @@ class UsersController extends Controller
                         ->withInput();
         }
 
-        $user->password = bcrypt($request->password);
+        $user->password = Hash::make($request->password);
         $user->save();
 
         $user->sendPasswordChanged();

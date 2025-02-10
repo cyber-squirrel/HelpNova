@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Attachment;
 use App\Conversation;
 use App\Option;
@@ -97,7 +98,7 @@ class OpenController extends Controller
         }
         $user->fill($request_data);
 
-        $user->password = bcrypt($request->password);
+        $user->password = Hash::make($request->password);
 
         $user->invite_state = User::INVITE_STATE_ACTIVATED;
         $user->invite_hash = '';
