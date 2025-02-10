@@ -48,7 +48,7 @@ class CronExpression
     /**
      * @var array Order in which to test of cron parts
      */
-    private static $order = array(self::YEAR, self::MONTH, self::DAY, self::WEEKDAY, self::HOUR, self::MINUTE);
+    private static $order = [self::YEAR, self::MONTH, self::DAY, self::WEEKDAY, self::HOUR, self::MINUTE];
 
     /**
      * Factory method to create a new CronExpression.
@@ -68,14 +68,14 @@ class CronExpression
      */
     public static function factory($expression, ?FieldFactory $fieldFactory = null)
     {
-        $mappings = array(
+        $mappings = [
             '@yearly' => '0 0 1 1 *',
             '@annually' => '0 0 1 1 *',
             '@monthly' => '0 0 1 * *',
             '@weekly' => '0 0 * * 0',
             '@daily' => '0 0 * * *',
             '@hourly' => '0 * * * *'
-        );
+        ];
 
         if (isset($mappings[$expression])) {
             $expression = $mappings[$expression];
@@ -226,7 +226,7 @@ class CronExpression
      */
     public function getMultipleRunDates($total, $currentTime = 'now', $invert = false, $allowCurrentDate = false)
     {
-        $matches = array();
+        $matches = [];
         for ($i = 0; $i < max(0, $total); $i++) {
             try {
                 $matches[] = $this->getRunDate($currentTime, $i, $invert, $allowCurrentDate);
@@ -336,8 +336,8 @@ class CronExpression
         $nth = (int) $nth;
 
         // We don't have to satisfy * or null fields
-        $parts = array();
-        $fields = array();
+        $parts = [];
+        $fields = [];
         foreach (self::$order as $position) {
             $part = $this->getExpression($position);
             if (null === $part || '*' === $part) {

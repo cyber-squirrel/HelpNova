@@ -1410,7 +1410,7 @@ class Helper
             $attr .= ' ' . $key . '="' . htmlentities($val) . '"';
         }
 
-        $links = array();
+        $links = [];
 
         // Extract existing links and tags
         $value = preg_replace_callback('~(<a .*?>.*?</a>|<.*?>)~i', function ($match) use (&$links) { return '<' . array_push($links, $match[1]) . '>'; }, $value ?? '') ?: $value;
@@ -1874,7 +1874,7 @@ class Helper
 
     public static function isCurrentUrlHttps()
     {
-        if (in_array(strtolower($_SERVER['X_FORWARDED_PROTO'] ?? ''), array('https', 'on', 'ssl', '1'), true)
+        if (in_array(strtolower($_SERVER['X_FORWARDED_PROTO'] ?? ''), ['https', 'on', 'ssl', '1'], true)
             || strtolower($_SERVER['HTTPS'] ?? '') == 'on' 
             || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') == 'https'
             || ($_SERVER['HTTP_CF_VISITOR'] ?? '') == '{"scheme":"https"}'

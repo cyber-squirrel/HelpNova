@@ -85,13 +85,13 @@ class LegacyProtocol extends Protocol {
             );
         } catch (\ErrorException $e) {
             $errors = \imap_errors();
-            $message = $e->getMessage().'. '.implode("; ", (is_array($errors) ? $errors : array()));
+            $message = $e->getMessage().'. '.implode("; ", (is_array($errors) ? $errors : []));
             throw new AuthFailedException($message);
         }
 
         if(!$this->stream) {
             $errors = \imap_errors();
-            $message = implode("; ", (is_array($errors) ? $errors : array()));
+            $message = implode("; ", (is_array($errors) ? $errors : []));
             throw new AuthFailedException($message);
         }
 
@@ -99,7 +99,7 @@ class LegacyProtocol extends Protocol {
         if(is_array($errors)) {
             $status = $this->examineFolder();
             if($status['exists'] !== 0) {
-                $message = implode("; ", (is_array($errors) ? $errors : array()));
+                $message = implode("; ", (is_array($errors) ? $errors : []));
                 throw new RuntimeException($message);
             }
         }

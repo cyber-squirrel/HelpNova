@@ -28,12 +28,12 @@ abstract class BaseProvider implements Countable
     /**
      * @var array
      */
-    protected $files = array();
+    protected $files = [];
 
     /**
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * @var string
@@ -72,13 +72,13 @@ abstract class BaseProvider implements Countable
             return isset($_SERVER[$key]) ? $_SERVER[$key] : '';
         };
 
-        $this->headers = array(
+        $this->headers = [
             'User-Agent'      => $value('HTTP_USER_AGENT'),
             'Accept'          => $value('HTTP_ACCEPT'),
             'Accept-Language' => $value('HTTP_ACCEPT_LANGUAGE'),
             'Accept-Encoding' => 'identity',
             'Connection'      => 'close',
-        );
+        ];
     }
 
     /**
@@ -169,12 +169,12 @@ abstract class BaseProvider implements Countable
                 {
                     $headers[$key] = $key . ': ' . $value;
                 }
-                $context = stream_context_create(array('http' => array(
+                $context = stream_context_create(['http' => [
                     'ignore_errors' => true,
                     'header' => implode("\r\n", $headers),
-                )));
+                ]]);
 
-                $http_response_header = array(false);
+                $http_response_header = [false];
                 $contents = file_get_contents($file, false, $context);
 
                 if (strpos($http_response_header[0], '200') === false)
@@ -244,7 +244,7 @@ abstract class BaseProvider implements Countable
      */
     protected function attributes($attributes)
     {
-        $html = array();
+        $html = [];
         foreach ((array) $attributes as $key => $value)
         {
             $element = $this->attributeElement($key, $value);

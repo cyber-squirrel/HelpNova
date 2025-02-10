@@ -84,7 +84,7 @@ class Carbon extends DateTime implements JsonSerializable
      *
      * @var array
      */
-    protected static $days = array(
+    protected static $days = [
         self::SUNDAY => 'Sunday',
         self::MONDAY => 'Monday',
         self::TUESDAY => 'Tuesday',
@@ -92,7 +92,7 @@ class Carbon extends DateTime implements JsonSerializable
         self::THURSDAY => 'Thursday',
         self::FRIDAY => 'Friday',
         self::SATURDAY => 'Saturday',
-    );
+    ];
 
     /**
      * Number of X in Y.
@@ -162,10 +162,10 @@ class Carbon extends DateTime implements JsonSerializable
      *
      * @var array
      */
-    protected static $weekendDays = array(
+    protected static $weekendDays = [
         self::SATURDAY,
         self::SUNDAY,
-    );
+    ];
 
     /**
      * Midday/noon hour.
@@ -179,7 +179,7 @@ class Carbon extends DateTime implements JsonSerializable
      *
      * @var array
      */
-    protected static $regexFormats = array(
+    protected static $regexFormats = [
         'd' => '(3[01]|[12][0-9]|0[1-9])',
         'D' => '([a-zA-Z]{3})',
         'j' => '([123][0-9]|[1-9])',
@@ -220,7 +220,7 @@ class Carbon extends DateTime implements JsonSerializable
         // The formats below are combinations of the above formats.
         'c' => '(([1-9]?[0-9]{4})\-(1[012]|0[1-9])\-(3[01]|[12][0-9]|0[1-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])[\+\-](1[012]|0[0-9]):([0134][05]))', // Y-m-dTH:i:sP
         'r' => '(([a-zA-Z]{3}), ([123][0-9]|[1-9]) ([a-zA-Z]{3}) ([1-9]?[0-9]{4}) (2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9]) [\+\-](1[012]|0[0-9])([0134][05]))', // D, j M Y H:i:s O
-    );
+    ];
 
     /**
      * A test Carbon instance to be returned when now instances are created.
@@ -255,7 +255,7 @@ class Carbon extends DateTime implements JsonSerializable
      *
      * @var array
      */
-    protected static $localMacros = array();
+    protected static $localMacros = [];
 
     /**
      * Will UTF8 encoding be used to print localized date/time ?
@@ -695,14 +695,14 @@ class Carbon extends DateTime implements JsonSerializable
     {
         $now = static::hasTestNow() ? static::getTestNow() : static::now($tz);
 
-        $defaults = array_combine(array(
+        $defaults = array_combine([
             'year',
             'month',
             'day',
             'hour',
             'minute',
             'second',
-        ), explode('-', $now->format('Y-n-j-G-i-s')));
+        ], explode('-', $now->format('Y-n-j-G-i-s')));
 
         $year = $year === null ? $defaults['year'] : $year;
         $month = $month === null ? $defaults['month'] : $month;
@@ -765,14 +765,14 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public static function createSafe($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
     {
-        $fields = array(
-            'year' => array(0, 9999),
-            'month' => array(0, 12),
-            'day' => array(0, 31),
-            'hour' => array(0, 24),
-            'minute' => array(0, 59),
-            'second' => array(0, 59),
-        );
+        $fields = [
+            'year' => [0, 9999],
+            'month' => [0, 12],
+            'day' => [0, 31],
+            'hour' => [0, 24],
+            'minute' => [0, 59],
+            'second' => [0, 59],
+        ];
 
         foreach ($fields as $field => $range) {
             if ($$field !== null && (!is_int($$field) || $$field < $range[0] || $$field > $range[1])) {
@@ -1041,7 +1041,7 @@ class Carbon extends DateTime implements JsonSerializable
      *
      * @throws \InvalidArgumentException
      */
-    protected static function expectDateTime($date, $other = array())
+    protected static function expectDateTime($date, $other = [])
     {
         $message = 'Expected ';
         foreach ((array) $other as $expect) {
@@ -1074,7 +1074,7 @@ class Carbon extends DateTime implements JsonSerializable
             return static::parse($date, $this->getTimezone());
         }
 
-        static::expectDateTime($date, array('null', 'string'));
+        static::expectDateTime($date, ['null', 'string']);
 
         return $date instanceof self ? $date : static::instance($date);
     }
@@ -1094,7 +1094,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function __get($name)
     {
-        static $formats = array(
+        static $formats = [
             'year' => 'Y',
             'yearIso' => 'o',
             'month' => 'n',
@@ -1117,7 +1117,7 @@ class Carbon extends DateTime implements JsonSerializable
             'shortLocaleDayOfWeek' => '%a',
             'localeMonth' => '%B',
             'shortLocaleMonth' => '%b',
-        );
+        ];
 
         switch (true) {
             case isset($formats[$name]):
@@ -1813,7 +1813,7 @@ class Carbon extends DateTime implements JsonSerializable
     public static function getAvailableLocales()
     {
         $translator = static::translator();
-        $locales = array();
+        $locales = [];
         if ($translator instanceof Translator) {
             foreach (glob(__DIR__.'/Lang/*.php') as $file) {
                 $locales[] = substr($file, strrpos($file, '/') + 1, -4);
@@ -2092,7 +2092,7 @@ class Carbon extends DateTime implements JsonSerializable
      */
     public function toArray()
     {
-        return array(
+        return [
             'year' => $this->year,
             'month' => $this->month,
             'day' => $this->day,
@@ -2105,7 +2105,7 @@ class Carbon extends DateTime implements JsonSerializable
             'timestamp' => $this->timestamp,
             'formatted' => $this->format(self::DEFAULT_TO_STRING_FORMAT),
             'timezone' => $this->timezone,
-        );
+        ];
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -4152,7 +4152,7 @@ class Carbon extends DateTime implements JsonSerializable
     public function diffForHumans($other = null, $absolute = false, $short = false, $parts = 1)
     {
         $isNow = $other === null;
-        $interval = array();
+        $interval = [];
 
         $parts = min(6, max(1, (int) $parts));
         $count = 1;
@@ -4166,14 +4166,14 @@ class Carbon extends DateTime implements JsonSerializable
 
         $diffInterval = $this->diff($other);
 
-        $diffIntervalArray = array(
-            array('value' => $diffInterval->y, 'unit' => 'year',    'unitShort' => 'y'),
-            array('value' => $diffInterval->m, 'unit' => 'month',   'unitShort' => 'm'),
-            array('value' => $diffInterval->d, 'unit' => 'day',     'unitShort' => 'd'),
-            array('value' => $diffInterval->h, 'unit' => 'hour',    'unitShort' => 'h'),
-            array('value' => $diffInterval->i, 'unit' => 'minute',  'unitShort' => 'min'),
-            array('value' => $diffInterval->s, 'unit' => 'second',  'unitShort' => 's'),
-        );
+        $diffIntervalArray = [
+            ['value' => $diffInterval->y, 'unit' => 'year',    'unitShort' => 'y'],
+            ['value' => $diffInterval->m, 'unit' => 'month',   'unitShort' => 'm'],
+            ['value' => $diffInterval->d, 'unit' => 'day',     'unitShort' => 'd'],
+            ['value' => $diffInterval->h, 'unit' => 'hour',    'unitShort' => 'h'],
+            ['value' => $diffInterval->i, 'unit' => 'minute',  'unitShort' => 'min'],
+            ['value' => $diffInterval->s, 'unit' => 'second',  'unitShort' => 's'],
+        ];
 
         foreach ($diffIntervalArray as $diffIntervalData) {
             if ($diffIntervalData['value'] > 0) {
@@ -4184,7 +4184,7 @@ class Carbon extends DateTime implements JsonSerializable
                     $unit = $short ? 'w' : 'week';
                     $count = (int) ($count / static::DAYS_PER_WEEK);
 
-                    $interval[] = static::translator()->transChoice($unit, $count, array(':count' => $count));
+                    $interval[] = static::translator()->transChoice($unit, $count, [':count' => $count]);
 
                     // get the count days excluding weeks (might be zero)
                     $numOfDaysCount = (int) ($diffIntervalData['value'] - ($count * static::DAYS_PER_WEEK));
@@ -4192,10 +4192,10 @@ class Carbon extends DateTime implements JsonSerializable
                     if ($numOfDaysCount > 0 && count($interval) < $parts) {
                         $unit = $short ? 'd' : 'day';
                         $count = $numOfDaysCount;
-                        $interval[] = static::translator()->transChoice($unit, $count, array(':count' => $count));
+                        $interval[] = static::translator()->transChoice($unit, $count, [':count' => $count]);
                     }
                 } else {
-                    $interval[] = static::translator()->transChoice($unit, $count, array(':count' => $count));
+                    $interval[] = static::translator()->transChoice($unit, $count, [':count' => $count]);
                 }
             }
 
@@ -4215,7 +4215,7 @@ class Carbon extends DateTime implements JsonSerializable
             }
             $count = static::getHumanDiffOptions() & self::NO_ZERO_DIFF ? 1 : 0;
             $unit = $short ? 's' : 'second';
-            $interval[] = static::translator()->transChoice($unit, $count, array(':count' => $count));
+            $interval[] = static::translator()->transChoice($unit, $count, [':count' => $count]);
         }
 
         // join the interval parts by a space
@@ -4251,11 +4251,11 @@ class Carbon extends DateTime implements JsonSerializable
             // Some languages have special pluralization for past and future tense.
             $key = $unit.'_'.$transId;
             if ($key !== static::translator()->transChoice($key, $count)) {
-                $time = static::translator()->transChoice($key, $count, array(':count' => $count));
+                $time = static::translator()->transChoice($key, $count, [':count' => $count]);
             }
         }
 
-        return static::translator()->trans($transId, array(':time' => $time));
+        return static::translator()->trans($transId, [':time' => $time]);
     }
 
     ///////////////////////////////////////////////////////////////////

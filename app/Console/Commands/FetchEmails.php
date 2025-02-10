@@ -453,7 +453,7 @@ class FetchEmails extends Command
             $is_bounce = false;
 
             // Determine previous Message-ID
-            $prev_message_ids = array();
+            $prev_message_ids = [];
 
             if ($references && !is_array($references)) {
                 $references = array_filter(preg_split('/[, <>]/', $references));

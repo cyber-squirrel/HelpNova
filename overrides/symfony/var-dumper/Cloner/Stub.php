@@ -37,11 +37,11 @@ class Stub implements \Serializable
     public $handle = 0;
     public $refCount = 0;
     public $position = 0;
-    public $attr = array();
+    public $attr = [];
 
     public function __serialize()
     {
-        return array($this->class, $this->position, $this->cut, $this->type, $this->value, $this->handle, $this->refCount, $this->attr);
+        return [$this->class, $this->position, $this->cut, $this->type, $this->value, $this->handle, $this->refCount, $this->attr];
     }
 
     /**
@@ -49,7 +49,7 @@ class Stub implements \Serializable
      */
     public function serialize()
     {
-        return \serialize(array($this->class, $this->position, $this->cut, $this->type, $this->value, $this->handle, $this->refCount, $this->attr));
+        return \serialize([$this->class, $this->position, $this->cut, $this->type, $this->value, $this->handle, $this->refCount, $this->attr]);
     }
 
     public function __unserialize($data)

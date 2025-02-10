@@ -79,7 +79,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
             return $item->value;
         }
 
-        $children = $item->position ? $this->data[$item->position] : array();
+        $children = $item->position ? $this->data[$item->position] : [];
 
         foreach ($children as $k => $v) {
             if ($recursive && !($v = $this->getStub($v)) instanceof Stub) {
@@ -125,7 +125,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         if (null !== $data = $this->seek($key)) {
             $item = $this->getStub($data->data[$data->position][$data->key]);
 
-            return $item instanceof Stub || array() === $item ? $data : $item;
+            return $item instanceof Stub || [] === $item ? $data : $item;
         }
     }
 
@@ -241,7 +241,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         if (!($item = $this->getStub($item)) instanceof Stub || !$item->position) {
             return;
         }
-        $keys = array($key);
+        $keys = [$key];
 
         switch ($item->type) {
             case Stub::TYPE_OBJECT:
@@ -277,7 +277,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function dump(DumperInterface $dumper)
     {
-        $refs = array(0);
+        $refs = [0];
         $this->dumpItem($dumper, new Cursor(), $refs, $this->data[$this->position][$this->key]);
     }
 
@@ -297,7 +297,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         $firstSeen = true;
 
         if (!$item instanceof Stub) {
-            $cursor->attr = array();
+            $cursor->attr = [];
             $type = \gettype($item);
             if ($item && 'array' === $type) {
                 $item = $this->getStub($item);
@@ -338,10 +338,10 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
                     if ($cut >= 0) {
                         $cut += \count($children);
                     }
-                    $children = array();
+                    $children = [];
                 }
             } else {
-                $children = array();
+                $children = [];
             }
             switch ($item->type) {
                 case Stub::TYPE_STRING:

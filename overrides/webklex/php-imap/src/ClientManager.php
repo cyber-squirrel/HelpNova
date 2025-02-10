@@ -230,15 +230,15 @@ class ClientManager {
 
         // From https://stackoverflow.com/a/173479
         $isAssoc = function(array $arr) {
-            if (array() === $arr) return false;
+            if ([] === $arr) return false;
             return array_keys($arr) !== range(0, count($arr) - 1);
         };
 
-        if(!is_array($base)) $base = empty($base) ? array() : array($base);
+        if(!is_array($base)) $base = empty($base) ? [] : [$base];
 
         foreach($arrays as $append) {
 
-            if(!is_array($append)) $append = array($append);
+            if(!is_array($append)) $append = [$append];
 
             foreach($append as $key => $value) {
 
