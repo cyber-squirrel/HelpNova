@@ -16,7 +16,7 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Support\Arrayable;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
-use Illuminate\Contracts\Logging\Log as LogContract;
+use Psr\Log\LoggerInterface as LogContract;
 
 class Writer implements LogContract, PsrLoggerInterface
 {
