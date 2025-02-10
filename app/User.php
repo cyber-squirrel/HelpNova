@@ -126,7 +126,7 @@ class User extends Authenticatable
     public function __construct(array $attributes = [])
     {
         $this->setRawAttributes(array_merge($this->attributes, [
-            'timezone' => config('app.timezone') ?: User::DEFAULT_TIMEZONE
+            'timezone' => config('app.timezone') ?: User::DEFAULT_TIMEZONE,
         ]), true);
         parent::__construct($attributes);
     }
@@ -329,7 +329,8 @@ class User extends Authenticatable
     /**
      * Check to see if the user can manage any mailboxes
      */
-    public function hasManageMailboxAccess() {
+    public function hasManageMailboxAccess()
+    {
         if ($this->isAdmin()) {
             return true;
         } else {
@@ -363,7 +364,8 @@ class User extends Authenticatable
      * Main function to check if user has some exta access permission
      * for a given mailbox.
      */
-    public function hasManageMailboxPermission($mailbox_id, $perm) {
+    public function hasManageMailboxPermission($mailbox_id, $perm)
+    {
         // Experimental feature.
         // This option does not affect admin users.
         if ($perm == Mailbox::ACCESS_PERM_ASSIGNED) {
@@ -428,7 +430,7 @@ class User extends Authenticatable
      */
     public function url()
     {
-        return route('users.profile', ['id'=>$this->id]);
+        return route('users.profile', ['id' => $this->id]);
     }
 
     /**
@@ -538,7 +540,6 @@ class User extends Authenticatable
         }
 
         if (class_exists('IntlDateFormatter')) {
-
             // Convert `strftime` format to `IntlDateFormatter` pattern.
             // https://unicode-org.github.io/icu/userguide/format_parse/datetime/
             $format = strtr($format, [
@@ -927,7 +928,7 @@ class User extends Authenticatable
 
         if ($check_own_permissions && !empty($this->permissions)) {
             if (isset($this->permissions[$permission])) {
-                $has_permission = (bool)$this->permissions[$permission];
+                $has_permission = (bool) $this->permissions[$permission];
             }
         }
 
@@ -1247,16 +1248,14 @@ class User extends Authenticatable
 
         $this->conversations->each(function ($conversation) use ($auth_user, $assign_user) {
             // We don't fire ConversationUserChanged event to avoid sending notifications to users
-            if (!empty($assign_user) 
-                && !empty($assign_user[$conversation->mailbox_id]) 
+            if (!empty($assign_user)
+                && !empty($assign_user[$conversation->mailbox_id])
                 && (int) $assign_user[$conversation->mailbox_id] != -1
             ) {
                 // Set assignee.
                 // In this case conversation stays assigned, just assignee changes.
                 $conversation->user_id = $assign_user[$conversation->mailbox_id];
-
             } else {
-
                 // Make convesation Unassigned.
                 
                 // Unset assignee.

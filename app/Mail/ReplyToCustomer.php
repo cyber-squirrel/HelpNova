@@ -101,7 +101,6 @@ class ReplyToCustomer extends Mailable
                     // as user thread may have From specified when a user
                     // replies to an email notification.
                     if (array_key_exists($from_alias, $aliases)) {
-
                         $from_alias_name = $aliases[$from_alias] ?? '';
 
                         // Take into account mailbox From Name setting.
@@ -117,7 +116,7 @@ class ReplyToCustomer extends Mailable
 
                         if ($from_alias_name) {
                             $swift_from->setNameAddresses([
-                                $from_alias => $from_alias_name
+                                $from_alias => $from_alias_name,
                             ]);
                         } else {
                             $swift_from->setAddresses([
@@ -135,8 +134,8 @@ class ReplyToCustomer extends Mailable
             });
         }
 
-        $template_html = \Eventy::filter('email.reply_to_customer.template_name_html','emails/customer/reply_fancy');
-        $template_text = \Eventy::filter('email.reply_to_customer.template_name_text','emails/customer/reply_fancy_text');
+        $template_html = \Eventy::filter('email.reply_to_customer.template_name_html', 'emails/customer/reply_fancy');
+        $template_text = \Eventy::filter('email.reply_to_customer.template_name_text', 'emails/customer/reply_fancy_text');
 
         // from($this->from) Sets only email, name stays empty.
         // So we set from in Mail::setMailDriver

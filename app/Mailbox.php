@@ -545,7 +545,7 @@ class Mailbox extends Model
         }
         $filter = \Eventy::filter('mailbox.user_has_access', -1, $this, $user);
         if ($filter != -1) {
-            return (bool)$filter;
+            return (bool) $filter;
         } elseif ($user && $user->isAdmin()) {
             return true;
         } else {
@@ -685,6 +685,7 @@ class Mailbox extends Model
 
     /**
      * Create dummy object with default parameters
+     *
      * @return [type] [description]
      */
     public static function getDummySettings()
@@ -979,13 +980,13 @@ class Mailbox extends Model
 
     public function inOauthEnabled()
     {
-        return $this->oauthEnabled() 
+        return $this->oauthEnabled()
             && $this->in_username !== null && !strstr($this->in_username, '@');
     }
 
     public function outOauthEnabled()
     {
-        return $this->oauthEnabled() 
+        return $this->oauthEnabled()
             && $this->out_username !== null && !strstr($this->out_username, '@')
             && $this->out_server !== null && trim($this->out_server) == \MailHelper::OAUTH_MICROSOFT_SMTP;
     }

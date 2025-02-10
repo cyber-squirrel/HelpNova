@@ -66,7 +66,6 @@ class PolycastBroadcaster extends Broadcaster
             // Copied from Illuminate\Broadcasting\Broadcasters\PusherBroadcaster
             if (Str::startsWith($channel_name, ['private-', 'presence-']) &&
                 !$request->user()) {
-
                 throw new AccessDeniedHttpException();
             }
 
@@ -76,7 +75,8 @@ class PolycastBroadcaster extends Broadcaster
                                     : Str::replaceFirst('presence-', '', $channel_name);
                 // This throws an exception if needed.
                 parent::verifyUserCanAccessChannel(
-                    $request, $channelName
+                    $request,
+                    $channelName
                 );
             }
         }

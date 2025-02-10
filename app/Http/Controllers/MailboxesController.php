@@ -166,7 +166,6 @@ class MailboxesController extends Controller
         }
 
         if ($user->can('updateSettings', $mailbox)) {
-
             // Checkboxes
             $request->merge([
                 'aliases_reply' => ($request->filled('aliases_reply') ?? false),
@@ -176,7 +175,7 @@ class MailboxesController extends Controller
             if (!auth()->user()->isAdmin()) {
                 $request->merge([
                     'name' => $mailbox->name,
-                    'email' => $mailbox->email
+                    'email' => $mailbox->email,
                 ]);
             }
 
@@ -308,7 +307,7 @@ class MailboxesController extends Controller
                     }
                 }
             }
-            $mailbox_user->settings->hide = (isset($request->managers[$admin->id]['hide']) ? (int)$request->managers[$admin->id]['hide'] : false);
+            $mailbox_user->settings->hide = (isset($request->managers[$admin->id]['hide']) ? (int) $request->managers[$admin->id]['hide'] : false);
             $mailbox_user->settings->save();
         }
 
@@ -329,7 +328,7 @@ class MailboxesController extends Controller
             } else {
                 $mailbox_with_settings->settings->access = json_encode($access);
             }
-            $mailbox_with_settings->settings->hide = (isset($request->managers[$mailbox_user->id]['hide']) ? (int)$request->managers[$mailbox_user->id]['hide'] : false);
+            $mailbox_with_settings->settings->hide = (isset($request->managers[$mailbox_user->id]['hide']) ? (int) $request->managers[$mailbox_user->id]['hide'] : false);
             $mailbox_with_settings->settings->save();
         }
 
@@ -502,7 +501,10 @@ class MailboxesController extends Controller
 
         $query_conversations = Conversation::getQueryByFolder($folder, $user->id);
         $conversations = $folder->queryAddOrderBy($query_conversations)->paginate(
-            Conversation::DEFAULT_LIST_SIZE, ['*'], 'page', $request->get('page')
+            Conversation::DEFAULT_LIST_SIZE,
+            ['*'],
+            'page',
+            $request->get('page')
         );
 
         return view('mailboxes/view', [
@@ -628,7 +630,6 @@ class MailboxesController extends Controller
         $user = auth()->user();
 
         switch ($request->action) {
-
             // Test sending emails from mailbox
             case 'send_test':
                 $mailbox = Mailbox::find($request->mailbox_id);
@@ -651,7 +652,7 @@ class MailboxesController extends Controller
 
                 if (!$response['msg']) {
                     $test_result = [
-                        'status' => 'error'
+                        'status' => 'error',
                     ];
 
                     try {
@@ -733,7 +734,6 @@ class MailboxesController extends Controller
                 $response['folders'] = [];
 
                 if (!$response['msg']) {
-
                     try {
                         $client = \MailHelper::getMailboxClient($mailbox);
                         $client->connect();
@@ -748,7 +748,6 @@ class MailboxesController extends Controller
                         }
 
                         if (count($response['folders'])) {
-
                             // https://github.com/freescout-helpdesk/freescout/issues/3933
                             // Exclude duplicate INBOX.Name and Name folders.
                             // $folder_excluded = false;
@@ -771,7 +770,6 @@ class MailboxesController extends Controller
                         } else {
                             $response['msg_success'] = __('Connected, but no IMAP folders found');
                         }
-
                     } catch (\Exception $e) {
                         $response['msg'] = $e->getMessage();
                     }
@@ -795,12 +793,11 @@ class MailboxesController extends Controller
                 }
 
                 if (!$response['msg']) {
-
                     // Remove threads and conversations.
                     $conversation_ids = $mailbox->conversations()->pluck('id')->toArray();
                     
-                    for ($i=0; $i < ceil(count($conversation_ids) / \Helper::IN_LIMIT); $i++) { 
-                        $slice_ids = array_slice($conversation_ids, $i*\Helper::IN_LIMIT, \Helper::IN_LIMIT);
+                    for ($i = 0; $i < ceil(count($conversation_ids) / \Helper::IN_LIMIT); $i++) {
+                        $slice_ids = array_slice($conversation_ids, $i * \Helper::IN_LIMIT, \Helper::IN_LIMIT);
                         Thread::whereIn('conversation_id', $slice_ids)->delete();
                     }
 
@@ -826,14 +823,13 @@ class MailboxesController extends Controller
                 }
 
                 if (!$response['msg']) {
-
                     $mailbox_user = $user->mailboxesWithSettings()->where('mailbox_id', $mailbox->id)->first();
                     if (!$mailbox_user) {
                         // User may not be connected to the mailbox yet
                         $user->mailboxes()->attach($mailbox->id);
                         $mailbox_user = $user->mailboxesWithSettings()->where('mailbox_id', $mailbox->id)->first();
                     }
-                    $mailbox_user->settings->mute = (bool)$request->mute;
+                    $mailbox_user->settings->mute = (bool) $request->mute;
                     $mailbox_user->settings->save();
 
                     $response['status'] = 'success';
@@ -853,7 +849,8 @@ class MailboxesController extends Controller
     }
 
     // Recursively interate over folders.
-    public function interateFolders($response, $imap_folders, $subfolder = false) {
+    public function interateFolders($response, $imap_folders, $subfolder = false)
+    {
         foreach ($imap_folders as $imap_folder) {
             if (!empty($imap_folder->name) && !$subfolder) {
                 $response['folders'][] = $imap_folder->name;
@@ -956,10 +953,8 @@ class MailboxesController extends Controller
 
         // Check given state against previously stored one to mitigate CSRF attack
         } elseif (empty($request->state) || ($state_data['state'] ?? '') !== ($session_data['state'] ?? '')) {
-            
             \Session::forget('mailbox_oauth_'.$provider.'_'.$mailbox_id);
             return 'Invalid oAuth state';
-
         } else {
             // state is set.
             // Try to get an access token (using the authorization code grant)
@@ -972,8 +967,8 @@ class MailboxesController extends Controller
             if (!empty($token_data['a_token'])) {
                 // Set username and password for the oppozite in_out.
                 if ($in_out == 'in') {
-                    if (empty($mailbox->out_server) 
-                        || (trim($mailbox->out_server) == \MailHelper::OAUTH_MICROSOFT_SMTP 
+                    if (empty($mailbox->out_server)
+                        || (trim($mailbox->out_server) == \MailHelper::OAUTH_MICROSOFT_SMTP
                             && (!$mailbox->out_username || $mailbox->out_username == $username))
                     ) {
                         $mailbox->out_username = $username;

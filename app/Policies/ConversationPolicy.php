@@ -42,7 +42,7 @@ class ConversationPolicy
 
     /**
      * Cached version.
-     * 
+     *
      * @param  User         $user         [description]
      * @param  Conversation $conversation [description]
      * @return [type]                     [description]

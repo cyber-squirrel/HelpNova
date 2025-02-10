@@ -116,103 +116,136 @@ class Helper
      * @var [type]
      */
     public static $locales = [
-        'af' => ['name'                  => 'Afrikaans',
+        'af' => [
+    'name'                  => 'Afrikaans',
                  'name_en'               => 'Afrikaans',
         ],
-        'sq' => ['name'          => 'Shqip',
+        'sq' => [
+        'name'          => 'Shqip',
                  'name_en'       => 'Albanian',
         ],
-        'ar' => ['name'          => 'العربية',
+        'ar' => [
+        'name'          => 'العربية',
                  'name_en'       => 'Arabic',
         ],
-        'ar-IQ' => ['name'          => 'العربية',
+        'ar-IQ' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Iraq)',
         ],
-        'ar-LY' => ['name'          => 'العربية',
+        'ar-LY' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Libya)',
         ],
-        'ar-MA' => ['name'          => 'العربية',
+        'ar-MA' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Morocco)',
         ],
-        'ar-OM' => ['name'          => 'العربية',
+        'ar-OM' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Oman)',
         ],
-        'ar-SY' => ['name'          => 'العربية',
+        'ar-SY' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Syria)',
         ],
-        'ar-LB' => ['name'          => 'العربية',
+        'ar-LB' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Lebanon)',
         ],
-        'ar-AE' => ['name'          => 'العربية',
+        'ar-AE' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (U.A.E.)',
         ],
-        'ar-QA' => ['name'          => 'العربية',
+        'ar-QA' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Qatar)',
         ],
-        'ar-SA' => ['name'          => 'العربية',
+        'ar-SA' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Saudi Arabia)',
         ],
-        'ar-EG' => ['name'          => 'العربية',
+        'ar-EG' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Egypt)',
         ],
-        'ar-DZ' => ['name'          => 'العربية',
+        'ar-DZ' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Algeria)',
         ],
-        'ar-TN' => ['name'          => 'العربية',
+        'ar-TN' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Tunisia)',
         ],
-        'ar-YE' => ['name'          => 'العربية',
+        'ar-YE' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Yemen)',
         ],
-        'ar-JO' => ['name'          => 'العربية',
+        'ar-JO' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Jordan)',
         ],
-        'ar-KW' => ['name'          => 'العربية',
+        'ar-KW' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Kuwait)',
         ],
-        'ar-BH' => ['name'          => 'العربية',
+        'ar-BH' => [
+        'name'          => 'العربية',
                     'name_en'       => 'Arabic (Bahrain)',
         ],
-        'az' => ['name'          => 'Azerbaijani',
+        'az' => [
+        'name'          => 'Azerbaijani',
                     'name_en'       => 'Azerbaijani',
         ],
-        'eu' => ['name'          => 'Euskara',
+        'eu' => [
+        'name'          => 'Euskara',
                  'name_en'       => 'Basque',
         ],
-        'be' => ['name'          => 'Беларуская',
+        'be' => [
+        'name'          => 'Беларуская',
                  'name_en'       => 'Belarusian',
         ],
-        'bn' => ['name'          => 'বাংলা',
+        'bn' => [
+        'name'          => 'বাংলা',
                  'name_en'       => 'Bengali',
         ],
-        'bg' => ['name'          => 'Български език',
+        'bg' => [
+        'name'          => 'Български език',
                  'name_en'       => 'Bulgarian',
         ],
-        'ca' => ['name'          => 'Català',
+        'ca' => [
+        'name'          => 'Català',
                  'name_en'       => 'Catalan',
         ],
-        'zh-CN' => ['name'          => '简体中文',
+        'zh-CN' => [
+        'name'          => '简体中文',
                     'name_en'       => 'Chinese (Simplified)',
         ],
-        'zh-SG' => ['name'          => '简体中文',
+        'zh-SG' => [
+        'name'          => '简体中文',
                     'name_en'       => 'Chinese (Singapore)',
         ],
-        'zh-TW' => ['name'          => '简体中文',
+        'zh-TW' => [
+        'name'          => '简体中文',
                     'name_en'       => 'Chinese (Traditional)',
         ],
-        'zh-HK' => ['name'          => '简体中文',
+        'zh-HK' => [
+        'name'          => '简体中文',
                     'name_en'       => 'Chinese (Hong Kong SAR)',
         ],
-        'hr' => ['name'          => 'Hrvatski',
+        'hr' => [
+        'name'          => 'Hrvatski',
                  'name_en'       => 'Croatian',
         ],
-        'cs' => ['name'          => 'Čeština',
+        'cs' => [
+        'name'          => 'Čeština',
                  'name_en'       => 'Czech',
         ],
-        'da' => ['name'          => 'Dansk',
+        'da' => [
+        'name'          => 'Dansk',
                  'name_en'       => 'Danish',
         ],
-        'nl' => ['name'          => 'Nederlands',
+        'nl' => [
+        'name'          => 'Nederlands',
                  'name_en'       => 'Dutch',
         ],
         //      'nl_BE' => ['name'     => 'Nederlands',
@@ -230,7 +263,8 @@ class Helper
         //      'en_ZA' => ['name'     => '',
         //                  'name_en'       => 'English (South Africa)',
         //      ],
-        'en' => ['name'          => 'English',
+        'en' => [
+        'name'          => 'English',
                  'name_en'       => 'English',
         ],
         //      'en_TT' => ['name'     => '',
@@ -251,19 +285,24 @@ class Helper
         //      'en_BZ' => ['name'     => '',
         //                  'name_en'       => 'English (Belize)',
         //      ],
-        'et' => ['name'          => 'Eesti',
+        'et' => [
+        'name'          => 'Eesti',
                  'name_en'       => 'Estonian',
         ],
-        'fo' => ['name'          => 'Føroyskt',
+        'fo' => [
+        'name'          => 'Føroyskt',
                  'name_en'       => 'Faeroese',
         ],
-        'fa' => ['name'          => 'فارسی',
+        'fa' => [
+        'name'          => 'فارسی',
                  'name_en'       => 'Farsi',
         ],
-        'fi' => ['name'          => 'Suomi',
+        'fi' => [
+        'name'          => 'Suomi',
                  'name_en'       => 'Finnish',
         ],
-        'fr' => ['name'          => 'Français',
+        'fr' => [
+        'name'          => 'Français',
                  'name_en'       => 'French',
         ],
         //      'fr_CA' => ['name'     => '',
@@ -278,10 +317,12 @@ class Helper
         //      'fr_CH' => ['name'     => '',
         //                  'name_en'       => 'French (Switzerland)',
         //      ],
-        'gd' => ['name'          => 'Gàidhlig',
+        'gd' => [
+        'name'          => 'Gàidhlig',
                  'name_en'       => 'Gaelic (Scotland)',
         ],
-        'de' => ['name'          => 'Deutsch',
+        'de' => [
+        'name'          => 'Deutsch',
                  'name_en'       => 'German',
         ],
         //      'de_CH' => ['name'     => '',
@@ -296,103 +337,132 @@ class Helper
         //      'de_LI' => ['name'     => '',
         //                  'name_en'       => 'German (Liechtenstein)',
         //      ],
-        'el' => ['name'          => 'Ελληνικά',
+        'el' => [
+        'name'          => 'Ελληνικά',
                  'name_en'       => 'Greek',
         ],
-        'he' => ['name'          => 'עברית',
+        'he' => [
+        'name'          => 'עברית',
                  'name_en'       => 'Hebrew',
         ],
-        'hi' => ['name'          => 'हिन्दी',
+        'hi' => [
+        'name'          => 'हिन्दी',
                  'name_en'       => 'Hindi',
         ],
-        'hu' => ['name'          => 'Magyar',
+        'hu' => [
+        'name'          => 'Magyar',
                  'name_en'       => 'Hungarian',
         ],
-        'is' => ['name'          => 'Íslenska',
+        'is' => [
+        'name'          => 'Íslenska',
                  'name_en'       => 'Icelandic',
         ],
-        'id' => ['name'          => 'Bahasa Indonesia',
+        'id' => [
+        'name'          => 'Bahasa Indonesia',
                  'name_en'       => 'Indonesian',
         ],
-        'ga' => ['name'          => 'Gaeilge',
+        'ga' => [
+        'name'          => 'Gaeilge',
                  'name_en'       => 'Irish',
         ],
-        'it' => ['name'          => 'Italiano',
+        'it' => [
+        'name'          => 'Italiano',
                  'name_en'       => 'Italian',
         ],
         //      'it_CH' => ['name'     => 'Italiano',
         //                  'name_en'       => 'Italian (Switzerland)',
         //      ],
-        'ja' => ['name'          => '日本語',
+        'ja' => [
+        'name'          => '日本語',
                  'name_en'       => 'Japanese',
         ],
-        'kz' => ['name'          => 'қазақ тілі',
+        'kz' => [
+        'name'          => 'қазақ тілі',
                  'name_en'       => 'Kazakh',
         ],
-        'ko' => ['name'          => '한국어 (韓國語)',
+        'ko' => [
+        'name'          => '한국어 (韓國語)',
                  'name_en'       => 'Korean (Johab)',
         ],
-        'lv' => ['name'          => 'Latviešu valoda',
+        'lv' => [
+        'name'          => 'Latviešu valoda',
                  'name_en'       => 'Latvian',
         ],
-        'lt' => ['name'          => 'Lietuvių kalba',
+        'lt' => [
+        'name'          => 'Lietuvių kalba',
                  'name_en'       => 'Lithuanian',
         ],
-        'mk' => ['name'          => 'Македонски јазик',
+        'mk' => [
+        'name'          => 'Македонски јазик',
                  'name_en'       => 'Macedonian (FYROM)',
         ],
-        'ms' => ['name'          => 'Bahasa Melayu, بهاس ملايو',
+        'ms' => [
+        'name'          => 'Bahasa Melayu, بهاس ملايو',
                  'name_en'       => 'Malay',
         ],
-        'mt' => ['name'          => 'Malti',
+        'mt' => [
+        'name'          => 'Malti',
                  'name_en'       => 'Maltese',
         ],
-        'ne' => ['name'          => 'नेपाली',
+        'ne' => [
+        'name'          => 'नेपाली',
                  'name_en'       => 'Nepali',
         ],
-        'no' => ['name'          => 'Norsk bokmål',
+        'no' => [
+        'name'          => 'Norsk bokmål',
                  'name_en'       => 'Norwegian (Bokmal)',
         ],
-        'pl' => ['name'          => 'Polski',
+        'pl' => [
+        'name'          => 'Polski',
                  'name_en'       => 'Polish',
         ],
-        'pt-PT' => ['name'          => 'Português',
+        'pt-PT' => [
+        'name'          => 'Português',
                  'name_en'       => 'Portuguese (Portugal)',
         ],
-        'pt-BR' => ['name'          => 'Português do Brasil',
+        'pt-BR' => [
+        'name'          => 'Português do Brasil',
                    'name_en'        => 'Portuguese (Brazil)',
         ],
-        'ro' => ['name'          => 'Română',
+        'ro' => [
+        'name'          => 'Română',
                  'name_en'       => 'Romanian',
         ],
         //      'ro_MO' => ['name'     => 'Română',
         //                  'name_en'       => 'Romanian (Republic of Moldova)',
         //      ],
-        'rm' => ['name'          => 'Rumantsch grischun',
+        'rm' => [
+        'name'          => 'Rumantsch grischun',
                  'name_en'       => 'Romansh',
         ],
-        'ru' => ['name'          => 'Русский',
+        'ru' => [
+        'name'          => 'Русский',
                  'name_en'       => 'Russian',
         ],
         //      'ru_MO' => ['name'     => '',
         //                  'name_en'       => 'Russian (Republic of Moldova)',
         //      ],
-        'sz' => ['name'          => 'Davvisámegiella',
+        'sz' => [
+        'name'          => 'Davvisámegiella',
                  'name_en'       => 'Sami (Lappish)',
         ],
-        'sr' => ['name'          => 'Српски језик',
+        'sr' => [
+        'name'          => 'Српски језик',
                  'name_en'       => 'Serbian (Latin)',
         ],
-        'sk' => ['name'          => 'Slovenčina',
+        'sk' => [
+        'name'          => 'Slovenčina',
                  'name_en'       => 'Slovak',
         ],
-        'sl' => ['name'          => 'Slovenščina',
+        'sl' => [
+        'name'          => 'Slovenščina',
                  'name_en'       => 'Slovenian',
         ],
         /*'sb' => ['name'     => 'Serbsce',
                  'name_en'       => 'Sorbian',
         ],*/
-        'es' => ['name'          => 'Español',
+        'es' => [
+        'name'          => 'Español',
                  'name_en'       => 'Spanish',
         ],
         //      'es_GT' => ['name'     => '',
@@ -449,7 +519,8 @@ class Helper
         //      'es_NI' => ['name'     => '',
         //                  'name_en'       => 'Spanish (Nicaragua)',
         //      ],
-        'sv' => ['name'          => 'Svenska',
+        'sv' => [
+        'name'          => 'Svenska',
                  'name_en'       => 'Swedish',
         ],
         // unknown
@@ -459,37 +530,48 @@ class Helper
         //      'sv_FI' => ['name'     => '',
         //                  'name_en'       => 'Swedish (Finland)',
         //      ],
-        'th' => ['name'          => 'ไทย',
+        'th' => [
+        'name'          => 'ไทย',
                  'name_en'       => 'Thai',
         ],
-        'ts' => ['name'          => 'Xitsonga',
+        'ts' => [
+        'name'          => 'Xitsonga',
                  'name_en'       => 'Tsonga',
         ],
-        'tn' => ['name'          => 'Setswana',
+        'tn' => [
+        'name'          => 'Setswana',
                  'name_en'       => 'Tswana',
         ],
-        'tr' => ['name'          => 'Türkçe',
+        'tr' => [
+        'name'          => 'Türkçe',
                  'name_en'       => 'Turkish',
         ],
-        'uk' => ['name'          => 'українська',
+        'uk' => [
+        'name'          => 'українська',
                  'name_en'       => 'Ukrainian',
         ],
-        'ur' => ['name'          => 'اردو',
+        'ur' => [
+        'name'          => 'اردو',
                  'name_en'       => 'Urdu',
         ],
-        've' => ['name'          => 'Tshivenḓa',
+        've' => [
+        'name'          => 'Tshivenḓa',
                  'name_en'       => 'Venda',
         ],
-        'vi' => ['name'          => 'Tiếng Việt',
+        'vi' => [
+        'name'          => 'Tiếng Việt',
                  'name_en'       => 'Vietnamese',
         ],
-        'xh' => ['name'          => 'isiXhosa',
+        'xh' => [
+        'name'          => 'isiXhosa',
                  'name_en'       => 'Xhosa',
         ],
-        'ji' => ['name'          => 'ייִדיש',
+        'ji' => [
+        'name'          => 'ייִדיש',
                  'name_en'       => 'Yiddish',
         ],
-        'zu' => ['name'          => 'isiZulu',
+        'zu' => [
+        'name'          => 'isiZulu',
                  'name_en'       => 'Zulu',
         ],
     ];
@@ -523,7 +605,7 @@ class Helper
     {
         // Remove all kinds of spaces after tags.
         // https://stackoverflow.com/questions/3230623/filter-all-types-of-whitespace-in-php
-        // 
+        //
         // Keep in mind that preg_replace() may return NULL if "u" flag is used.
         $text = preg_replace("/^(.*)>[\r\n]*\s+/mu", '$1>', $text ?? '');
 
@@ -691,14 +773,18 @@ class Helper
             imagesavealpha($thumb, true);
         }
         // Resize and crop
-        imagecopyresampled($thumb,
-                           $src,
-                           ceil(0 - ($new_width - $thumb_width) / 2), // Center the image horizontally
-                           ceil(0 - ($new_height - $thumb_height) / 2), // Center the image vertically
-                           0, 0,
-                           ceil($new_width),
-                           ceil($new_height),
-                           $width, $height);
+        imagecopyresampled(
+            $thumb,
+            $src,
+            ceil(0 - ($new_width - $thumb_width) / 2), // Center the image horizontally
+            ceil(0 - ($new_height - $thumb_height) / 2), // Center the image vertically
+            0,
+            0,
+            ceil($new_width),
+            ceil($new_height),
+            $width,
+            $height
+        );
         imagedestroy($src);
 
         return $thumb;
@@ -1076,7 +1162,7 @@ class Helper
 
         if ($embed_images) {
             // Replace embedded images with their urls.
-            $text = preg_replace( '/<img\b[^>]*src=\"([^>"]+)\"[^>]*>/i', "<div>$1</div>", $text);
+            $text = preg_replace('/<img\b[^>]*src=\"([^>"]+)\"[^>]*>/i', "<div>$1</div>", $text);
         }
         return (new \Html2Text\Html2Text($text, $options))->getText();
     }
@@ -1105,7 +1191,7 @@ class Helper
     {
         try {
             return json_decode('"'.str_replace('"', '\\"', $text).'"');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $text;
         }
     }
@@ -1339,7 +1425,7 @@ class Helper
             foreach ($mixed as $key => $value) {
                 $mixed[$key] = self::utf8ize($value);
             }
-        } else if (is_string($mixed)) {
+        } elseif (is_string($mixed)) {
             return self::utf8Encode($mixed);
         }
         return $mixed;
@@ -1376,7 +1462,7 @@ class Helper
         $html = \Purifier::clean($html);
 
         // It's not clear why it was needed to remove spaces after tags.
-        // 
+        //
         // Remove all kinds of spaces after tags
         // https://stackoverflow.com/questions/3230623/filter-all-types-of-whitespace-in-php
         //$html = preg_replace("/^(.*)>[\r\n]*\s+/mu", '$1>', $html);
@@ -1413,38 +1499,47 @@ class Helper
         $links = [];
 
         // Extract existing links and tags
-        $value = preg_replace_callback('~(<a .*?>.*?</a>|<.*?>)~i', function ($match) use (&$links) { return '<' . array_push($links, $match[1]) . '>'; }, $value ?? '') ?: $value;
+        $value = preg_replace_callback('~(<a .*?>.*?</a>|<.*?>)~i', function ($match) use (&$links) {
+            return '<' . array_push($links, $match[1]) . '>';
+        }, $value ?? '') ?: $value;
 
         $value = $value ?? '';
 
         // Extract text links for each protocol
-        foreach ((array)$protocols as $protocol) {
+        foreach ((array) $protocols as $protocol) {
             switch ($protocol) {
                 case 'http':
                 case 'https':
-                    //$value = preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) { 
-                    //$value = preg_replace_callback('%(\b(([\w-]+)://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s', function ($match) use ($protocol, &$links, $attr) { 
+                    //$value = preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) {
+                    //$value = preg_replace_callback('%(\b(([\w-]+)://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s', function ($match) use ($protocol, &$links, $attr) {
                     // https://github.com/freescout-helpdesk/freescout/issues/3402
                     $nbsp = html_entity_decode('&nbsp;');
-                    $value = preg_replace_callback('%([>\r\n\s:;\( '.$nbsp.']|^)((([\w-]+)://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s', function ($match) use ($protocol, &$links, $attr) { 
-                            if ($match[4]) {
-                                $protocol = $match[4];
-                            }
+                    $value = preg_replace_callback('%([>\r\n\s:;\( '.$nbsp.']|^)((([\w-]+)://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))%s', function ($match) use ($protocol, &$links, $attr) {
+                        if ($match[4]) {
+                            $protocol = $match[4];
+                        }
                             $link = $match[2];
                             $link = substr($link, strlen($match[3]));
                             //return '<' . array_push($links, "<a $attr href=\"$protocol://$link\">$protocol://$link</a>") . '>';
                             return $match[1].'<' . array_push($links, "<a $attr href=\"$protocol://$link\">".$match[2]."</a>") . '>';
                     }, $value) ?: $value;
                     break;
-                case 'mail':    $value = preg_replace_callback('~([^\s<>]+?@[^\s<]+?\.[^\s<]+)(?<![\.,:\)])~', function ($match) use (&$links, $attr) { return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\">{$match[1]}</a>") . '>'; }, $value) ?: $value;
+                case 'mail':    $value = preg_replace_callback('~([^\s<>]+?@[^\s<]+?\.[^\s<]+)(?<![\.,:\)])~', function ($match) use (&$links, $attr) {
+                    return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\">{$match[1]}</a>") . '>';
+                }, $value) ?: $value;
                     break;
-                default:        $value = preg_replace_callback('~' . preg_quote($protocol, '~') . '://([^\s<]+?)(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) { return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\">$protocol://{$match[1]}</a>") . '>'; }, $value) ?: $value;
+                default:
+                    $value = preg_replace_callback('~' . preg_quote($protocol, '~') . '://([^\s<]+?)(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) {
+                        return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\">$protocol://{$match[1]}</a>") . '>';
+                    }, $value) ?: $value;
                     break;
             }
         }
 
         // Insert all links
-        return preg_replace_callback('/<(\d+)>/', function ($match) use (&$links) { return $links[$match[1] - 1]; }, $value ?? '') ?: $value;
+        return preg_replace_callback('/<(\d+)>/', function ($match) use (&$links) {
+            return $links[$match[1] - 1];
+        }, $value ?? '') ?: $value;
     }
 
     /**
@@ -1462,7 +1557,7 @@ class Helper
      */
     public static function isInApp()
     {
-        return (int)app('request')->cookie('in_app');
+        return (int) app('request')->cookie('in_app');
     }
 
     /**
@@ -1537,7 +1632,7 @@ class Helper
         // Any image can be interpreted as SVG by browser,
         // so checking extension is not enough.
         if ($storage->exists($file_path)
-            && ($storage->mimeType($file_path) == 'image/svg+xml' 
+            && ($storage->mimeType($file_path) == 'image/svg+xml'
                 || strtolower(pathinfo($file_path, PATHINFO_EXTENSION)) == 'svg')
         ) {
             if (!$content) {
@@ -1546,7 +1641,7 @@ class Helper
             if ($content) {
                 $svg_sanitizer = new \enshrined\svgSanitize\Sanitizer();
                 $clean_content = $svg_sanitizer->sanitize($content);
-                if (!$clean_content)  {
+                if (!$clean_content) {
                     $clean_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $content);
                 }
                 $storage->put($file_path, $clean_content);
@@ -1581,7 +1676,8 @@ class Helper
         $message_bag->add($key, $text);
 
         \Session::flash(
-            'errors', $errors->put('default', $message_bag)
+            'errors',
+            $errors->put('default', $message_bag)
         );
     }
 
@@ -1621,23 +1717,23 @@ class Helper
         return str_replace(json_decode('"\u0000"'), "", $string);
     }
 
-    public static function humanFileSize($size, $unit="")
+    public static function humanFileSize($size, $unit = "")
     {
-        if ((!$unit && $size >= 1<<30) || $unit == "GB") {
-            return number_format($size/(1<<30),2)."GB";
+        if ((!$unit && $size >= 1 << 30) || $unit == "GB") {
+            return number_format($size / (1 << 30), 2)."GB";
         }
-        if ((!$unit && $size >= 1<<20) || $unit == "MB") {
-            return number_format($size/(1<<20),2)."MB";
+        if ((!$unit && $size >= 1 << 20) || $unit == "MB") {
+            return number_format($size / (1 << 20), 2)."MB";
         }
         //if ((!$unit && $size >= 1<<10) || $unit == "KB") {
-        return number_format($size/(1<<10),2)."KB";
+        return number_format($size / (1 << 10), 2)."KB";
         // }
         // return number_format($size)." bytes";
     }
 
     public static function isPrint()
     {
-        return (bool)app('request')->input('print');
+        return (bool) app('request')->input('print');
     }
 
     public static function isDev()
@@ -1681,16 +1777,14 @@ class Helper
             \File::put($temp_file, $contents);
 
             return $temp_file;
-
         } catch (\Exception $e) {
-
             \Helper::logException($e, 'Error downloading a remote file ('.$uri.'): ');
 
             return false;
         }
     }
 
-    // Replacement for file_get_contents() as some hostings 
+    // Replacement for file_get_contents() as some hostings
     // do not allow reading remote files via allow_url_fopen option.
     public static function getRemoteFileContents($url)
     {
@@ -1727,9 +1821,7 @@ class Helper
             }
 
             return $contents;
-
         } catch (\Exception $e) {
-
             \Helper::logException($e, 'Error downloading a remote file ('.$url.'): ');
 
             return false;
@@ -1758,8 +1850,11 @@ class Helper
         $file_path = self::downloadRemoteFileAsTmp($uri);
         if ($file_path) {
             return new \Illuminate\Http\UploadedFile(
-                $file_path, basename($file_path),
-                null, null, true
+                $file_path,
+                basename($file_path),
+                null,
+                null,
+                true
             );
         } else {
             return null;
@@ -1875,7 +1970,7 @@ class Helper
     public static function isCurrentUrlHttps()
     {
         if (in_array(strtolower($_SERVER['X_FORWARDED_PROTO'] ?? ''), ['https', 'on', 'ssl', '1'], true)
-            || strtolower($_SERVER['HTTPS'] ?? '') == 'on' 
+            || strtolower($_SERVER['HTTPS'] ?? '') == 'on'
             || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') == 'https'
             || ($_SERVER['HTTP_CF_VISITOR'] ?? '') == '{"scheme":"https"}'
         ) {
@@ -1971,7 +2066,7 @@ class Helper
     public static function phoneToNumeric($phone)
     {
         $phone = preg_replace("/[^0-9]/", '', $phone);
-        return (string)$phone;
+        return (string) $phone;
     }
 
     public static function checkRequiredExtensions()
@@ -2019,7 +2114,7 @@ class Helper
             // console command makes it wait infinitely and be aborted.
             // Commands should avoid using interctive functions or use special flags.
             //'posix_isatty (PHP)'  => function_exists('posix_isatty'),
-            'pcntl_signal (console PHP)'    => function_exists('shell_exec') ? (int)\Helper::shellExec('php -r "echo (int)function_exists(\'pcntl_signal\');"') : false,
+            'pcntl_signal (console PHP)'    => function_exists('shell_exec') ? (int) \Helper::shellExec('php -r "echo (int)function_exists(\'pcntl_signal\');"') : false,
             'ps (shell)' => function_exists('shell_exec') ? \Helper::shellExec('ps') : false,
         ];
     }
@@ -2046,7 +2141,7 @@ class Helper
         if (\Option::get('send_emails_problem')) {
             $flashes[] = [
                 'type'      => 'warning',
-                'text'      =>  __('There is a problem processing outgoing mail queue — an admin should check :%a_begin%System Status:%a_end% and :%a_begin_recommendations%Recommendations:%a_end%', ['%a_begin%' => '<a href="'.route('system').'#cron" target="_blank">', '%a_end%' => '</a>', /*'%a_begin_logs%' => '<a href="'.route('logs', ['name' => 'send_errors']).'#cron" target="_blank">',*/ '%a_begin_recommendations%' => '<a href="'.config('app.freescout_repo').'/wiki/Background-Jobs" target="_blank">']),
+                'text'      => __('There is a problem processing outgoing mail queue — an admin should check :%a_begin%System Status:%a_end% and :%a_begin_recommendations%Recommendations:%a_end%', ['%a_begin%' => '<a href="'.route('system').'#cron" target="_blank">', '%a_end%' => '</a>', /*'%a_begin_logs%' => '<a href="'.route('logs', ['name' => 'send_errors']).'#cron" target="_blank">',*/ '%a_begin_recommendations%' => '<a href="'.config('app.freescout_repo').'/wiki/Background-Jobs" target="_blank">']),
                 'unescaped' => true,
             ];
         }
@@ -2066,7 +2161,7 @@ class Helper
      */
     public static function setPcreBacktrackLimit()
     {
-        if ((int)ini_get('pcre.backtrack_limit') <= 1000000) {
+        if ((int) ini_get('pcre.backtrack_limit') <= 1000000) {
             ini_set('pcre.backtrack_limit', 1000000000);
         }
     }
@@ -2116,8 +2211,8 @@ class Helper
         // Curl has default CURLOPT_CONNECTTIMEOUT=30 seconds.
         curl_setopt($ch, CURLOPT_TIMEOUT, config('app.curl_timeout'));
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, config('app.curl_connect_timeout'));
-        curl_setopt($ch, CURLOPT_PROXY, config('app.proxy'));        
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, config('app.curl_ssl_verifypeer'));        
+        curl_setopt($ch, CURLOPT_PROXY, config('app.proxy'));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, config('app.curl_ssl_verifypeer'));
     }
 
     public static function setGuzzleDefaultOptions($params = [])
@@ -2171,12 +2266,12 @@ class Helper
 
     public static function isChatMode()
     {
-        return (int)\Session::get('chat_mode', 0);
+        return (int) \Session::get('chat_mode', 0);
     }
 
     public static function setChatMode($is_on)
     {
-        if ((int)$is_on) {
+        if ((int) $is_on) {
             \Session::put('chat_mode', 1);
         } else {
             \Session::forget('chat_mode');

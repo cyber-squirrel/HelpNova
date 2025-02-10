@@ -23,7 +23,6 @@ class RestartQueueWorker implements ShouldQueue
      */
     public function __construct()
     {
-        
     }
 
     /**

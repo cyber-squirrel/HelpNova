@@ -21,7 +21,9 @@ class RealtimeBroadcastChannel extends BroadcastChannel
         $message = $this->getData($notifiable, $notification);
 
         $event = new RealtimeBroadcastNotificationCreated(
-            $notifiable, $notification, is_array($message) ? $message : $message->data
+            $notifiable,
+            $notification,
+            is_array($message) ? $message : $message->data
         );
 
         return $this->events->dispatch($event);

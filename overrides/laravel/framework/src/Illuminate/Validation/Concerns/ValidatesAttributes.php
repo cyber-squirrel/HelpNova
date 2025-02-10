@@ -165,7 +165,7 @@ trait ValidatesAttributes
      * @param  string  $attribute
      * @return string|null
      */
-    protected function getDateFormat($attribute)
+    public function getDateFormat($attribute)
     {
         if ($result = $this->getRule($attribute, 'DateFormat')) {
             return $result[1][0];

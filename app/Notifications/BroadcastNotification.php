@@ -73,7 +73,7 @@ class BroadcastNotification extends Notification implements ShouldQueue
         }
 
         // Try to convert to array.
-        $mediums = (array)$payload->mediums;
+        $mediums = (array) $payload->mediums;
 
         $thread = Thread::find($payload->thread_id);
 

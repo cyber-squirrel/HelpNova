@@ -18,7 +18,7 @@ class CustomHandle
     {
         // Enable/disable chat mode
         if ($request->exists('chat_mode')) {
-            \Helper::setChatMode((int)$request->chat_mode);
+            \Helper::setChatMode((int) $request->chat_mode);
         }
 
         // Hook.

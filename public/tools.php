@@ -84,7 +84,6 @@ $errors = [];
 $app_key = $_POST['app_key'] ?? '';
 
 if (!empty($_POST)) {
-
     $php_path = 'php';
     if (!empty($_POST['php_path'])) {
         $php_path = trim($_POST['php_path']);
@@ -110,7 +109,6 @@ if (!empty($_POST)) {
                 'text' => '<code>shell_exec</code> function is unavailable. Can not run updating.',
             ];
         } else {
-            
             // Make sure that it's actually $php_path points to PHP executable and not something else.
             $version_output = shell_exec($php_path.' -r "echo phpversion();"');
 
@@ -186,60 +184,64 @@ if (!empty($_POST)) {
         <link href="/installer/css/style.min.css" rel="stylesheet"/>
     </head>
     <body>
-    	<div class="master">
+        <div class="master">
             <div class="box">
                 <div class="header">
                     <h1 class="header__title">FreeScout Tools</h1>
                 </div>
                 <div class="main">
 
-                	<?php if (!empty($alerts)): ?>
-                		<?php foreach ($alerts as $alert): ?>
-                			<div class="alert alert-<?php echo $alert['type'] ?>">
-                				<?php echo $alert['text']; ?>
-                			</div>
-                		<?php endforeach ?>
-                	<?php endif ?>
+                    <?php if (!empty($alerts)) : ?>
+                        <?php foreach ($alerts as $alert) : ?>
+                            <div class="alert alert-<?php echo $alert['type'] ?>">
+                                <?php echo $alert['text']; ?>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
 
-                	<form method="post" action="">
-						<div class="form-group <?php if (!empty($errors['app_key'])):?>has-error<?php endif ?>">
-		                    <label for="app_key">
-		                        <strong>App Key</strong> (from .env file)
-		                    </label>
-		                    <input type="text" name="app_key" value="<?php echo htmlentities($app_key); ?>" required="required"/>
-		                    <?php if (!empty($errors['app_key'])): ?>
-		                        <span class="error-block">
-		                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-		                            <?php echo $errors['app_key']; ?>
-		                        </span>
-		                    <?php endif ?>
-		                </div>
-						<div class="form-group <?php if (!empty($errors['php_path'])):?>has-error<?php endif ?>">
-		                    <label for="php_path">
-		                        <strong>Path to PHP</strong> (example: /usr/local/php81/bin/php)
-		                    </label>
-		                    <input type="text" name="php_path" value="<?php echo htmlentities($_POST['php_path'] ?? ''); ?>" placeholder="(optional)"/>
-		                    <?php if (!empty($errors['php_path'])): ?>
-		                        <span class="error-block">
-		                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-		                            <?php echo $errors['php_path']; ?>
-		                        </span>
-		                    <?php endif ?>
-		                </div>
-		                <div class="buttons">
-		                    <button class="button" type="submit" name="action" value="update">
-		                        Update Now
-		                    </button>
-		                    <br/>
-		                    <button class="button" type="submit" name="action" value="cc">
-		                        Clear Cache
-		                    </button>
-		                    <button class="button" type="submit" name="action" value="migrate">
-		                        Migrate DB
-		                    </button>
-		                </div>
-	                </form>
-               	</div>
+                    <form method="post" action="">
+                        <div class="form-group <?php if (!empty($errors['app_key'])) :
+                            ?>has-error<?php
+                                               endif ?>">
+                            <label for="app_key">
+                                <strong>App Key</strong> (from .env file)
+                            </label>
+                            <input type="text" name="app_key" value="<?php echo htmlentities($app_key); ?>" required="required"/>
+                            <?php if (!empty($errors['app_key'])) : ?>
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    <?php echo $errors['app_key']; ?>
+                                </span>
+                            <?php endif ?>
+                        </div>
+                        <div class="form-group <?php if (!empty($errors['php_path'])) :
+                            ?>has-error<?php
+                                               endif ?>">
+                            <label for="php_path">
+                                <strong>Path to PHP</strong> (example: /usr/local/php81/bin/php)
+                            </label>
+                            <input type="text" name="php_path" value="<?php echo htmlentities($_POST['php_path'] ?? ''); ?>" placeholder="(optional)"/>
+                            <?php if (!empty($errors['php_path'])) : ?>
+                                <span class="error-block">
+                                    <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                                    <?php echo $errors['php_path']; ?>
+                                </span>
+                            <?php endif ?>
+                        </div>
+                        <div class="buttons">
+                            <button class="button" type="submit" name="action" value="update">
+                                Update Now
+                            </button>
+                            <br/>
+                            <button class="button" type="submit" name="action" value="cc">
+                                Clear Cache
+                            </button>
+                            <button class="button" type="submit" name="action" value="migrate">
+                                Migrate DB
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

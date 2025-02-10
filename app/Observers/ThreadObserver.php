@@ -26,7 +26,7 @@ class ThreadObserver
 
         if ($use_mail_date_on_fetching) {
             $now = $thread->created_at;
-        }else{
+        } else {
             $now = date('Y-m-d H:i:s');
         }
         
@@ -37,7 +37,7 @@ class ThreadObserver
             $conversation->user_updated_at = $now;
         }
         
-        if ((in_array($thread->type, [Thread::TYPE_CUSTOMER, Thread::TYPE_MESSAGE]) 
+        if ((in_array($thread->type, [Thread::TYPE_CUSTOMER, Thread::TYPE_MESSAGE])
             || ($conversation->isPhone() && in_array($thread->type, [Thread::TYPE_NOTE])))
             && $thread->state == Thread::STATE_PUBLISHED
         ) {
@@ -64,7 +64,7 @@ class ThreadObserver
         $conversation->save();
 
         // $is_new_conversation = false;
-        // if ($conversation->threads_count == 0 
+        // if ($conversation->threads_count == 0
         //     && in_array($thread->type, [Thread::TYPE_CUSTOMER, Thread::TYPE_MESSAGE, Thread::TYPE_NOTE])
         //     && $thread->state == Thread::STATE_PUBLISHED
         // ) {
@@ -77,7 +77,7 @@ class ThreadObserver
         // }
 
         // Real time for user notifications is sent using events.
-        if ($thread->type == Thread::TYPE_CUSTOMER 
+        if ($thread->type == Thread::TYPE_CUSTOMER
             || ($thread->type == Thread::TYPE_MESSAGE && $thread->state == Thread::STATE_DRAFT)
         ) {
             Conversation::refreshConversations($conversation, $thread);

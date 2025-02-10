@@ -219,7 +219,6 @@ class SecureController extends Controller
         }
 
         if (!$response['msg']) {
-
             $upload = Helper::uploadFile($request->file, $allowed_exts);
             $filename = basename($upload);
 

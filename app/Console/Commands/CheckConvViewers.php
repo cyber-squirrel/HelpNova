@@ -53,7 +53,6 @@ class CheckConvViewers extends Command
                 continue;
             }
             foreach ($conv_data as $user_id => $data) {
-
                 if (!isset($data['t']) || !isset($data['r'])) {
                     continue;
                 }

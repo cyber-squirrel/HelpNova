@@ -15,7 +15,7 @@ class FrameGuard
 
         $x_frame_options = config('app.x_frame_options');
 
-        if (false !== $x_frame_options 
+        if (false !== $x_frame_options
             && $x_frame_options !== 'false'
             && $x_frame_options !== '0'
         ) {

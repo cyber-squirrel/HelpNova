@@ -95,7 +95,6 @@ class ModulesController extends Controller
         // Prepare directory modules
         if (is_array($modules_directory)) {
             foreach ($modules_directory as $i_dir => $dir_module) {
-
                 $modules_directory[$i_dir] = \App\Module::formatModuleData($dir_module);
 
                 // Remove modules without aliases
@@ -214,7 +213,6 @@ class ModulesController extends Controller
         ];
 
         switch ($request->action) {
-
             case 'install':
             case 'activate_license':
                 $license = $request->license;
@@ -519,7 +517,6 @@ class ModulesController extends Controller
                 $module = \Module::findByAlias($alias);
 
                 if ($module) {
-
                     //\App\Module::deactivateLicense($alias, $license);
 
                     $module->delete();
@@ -548,7 +545,6 @@ class ModulesController extends Controller
 
                 // Install updated module.
                 if ($update_result['output'] || $update_result['status']) {
-
                     $type = 'danger';
                     $msg = $update_result['msg'];
 

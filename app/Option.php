@@ -51,7 +51,8 @@ class Option extends Model
         $serialized_value = self::maybeSerialize($value);
 
         $option = self::firstOrCreate(
-            ['name' => $name], ['value' => $serialized_value]
+            ['name' => $name],
+            ['value' => $serialized_value]
         );
 
         $old_value = $option['value'];

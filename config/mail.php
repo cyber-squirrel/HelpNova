@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'mail'),
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT'),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name'    => env('MAIL_FROM_NAME', 'Example'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -90,18 +90,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Auth mode
-    |--------------------------------------------------------------------------
-    |
-    | This option have an effect when set to 'XOAUTH2' only.
-    | In other cases Swiftmailer chooses auth mode automatically.
-    |
-    */
-
-    'auth_mode' => env('MAIL_AUTH_MODE', ''),
-
-    /*
-    |--------------------------------------------------------------------------
     | Sendmail System Path
     |--------------------------------------------------------------------------
     |
@@ -131,14 +119,5 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Swiftmailer SMTP timeout.
-    |--------------------------------------------------------------------------
-    |
-    */
-
-    'smtp_timeout' => env('MAIL_SMTP_TIMEOUT', 30),
 
 ];

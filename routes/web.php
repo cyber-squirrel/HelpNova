@@ -21,9 +21,9 @@ Route::post(config('app.login_path'), 'Auth\LoginController@login');
 // Authentication redirects to /home
 // if APP_DASHBOARD_PATH is empty APP_URL will be used
 if (config('app.dashboard_path')) {
-	Route::redirect('/home', config('app.url').'/'.config('app.dashboard_path'), 302);
+    Route::redirect('/home', config('app.url').'/'.config('app.dashboard_path'), 302);
 } else {
-	Route::redirect('/home', config('app.url'), 302);
+    Route::redirect('/home', config('app.url'), 302);
 }
 
 // Open routes
@@ -33,7 +33,7 @@ Route::get('/storage/attachment/{dir_1}/{dir_2}/{dir_3}/{file_name}', 'OpenContr
 
 // General routes for logged in users
 if (config('app.dashboard_path')) {
-	Route::get('/', config('app.home_controller'));
+    Route::get('/', config('app.home_controller'));
 }
 Route::get('/'.config('app.dashboard_path'), 'SecureController@dashboard')->name('dashboard');
 Route::get('/app-logs/app', ['uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index', 'middleware' => ['auth', 'roles'], 'roles' => ['admin']])->name('logs.app');
